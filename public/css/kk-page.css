@@ -1,0 +1,20 @@
+.img-profile {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.img-jurnal {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+
+.jurnal-item {
+  margin-top: 64px;
+}
+
+.btn-jurnal {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}

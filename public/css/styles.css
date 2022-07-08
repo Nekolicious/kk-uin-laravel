@@ -1,0 +1,55 @@
+.bg-gray {
+    background-color: rgb(215, 215, 215);
+}
+
+.article-p {
+    text-indent: 30px;
+}
+
+.article-img {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+@media (min-width: 280px) and (max-width: 360px)  {
+    #header h1, #header h5 {
+        font-size: 0.8rem !important;
+    }
+
+    #research-4th img {
+        height: 420px !important;
+        object-fit: contain !important;
+    }
+}
+
+/* Forum Post Button Behavior */
+.post-response button:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+/* Like Button Behavior */
+.post-response button .icon-liked {
+    display: none;
+}
+.post-response button .icon-like {
+    display: inline;
+}
+.post-response button:hover .icon-like {
+    display: none;
+}
+.post-response button:hover .icon-liked {
+    display: inline;
+}
+/* Reponse Button Behavior */
+.post-response button .icon-replied {
+    display: none;
+}
+.post-response button .icon-reply {
+    display: inline;
+}
+.post-response button:hover .icon-replied {
+    display: inline;
+}
+.post-response button:hover .icon-reply {
+    display: none;
+}
