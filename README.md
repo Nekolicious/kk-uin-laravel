@@ -3,7 +3,9 @@ Kerja Praktek Lustiyana & Sabili
 
 ## First Installation
 Update composer
-`composer update`
+```
+composer update
+```
 
  Create `.env` file contains :
  ```
@@ -72,10 +74,14 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ```
 
 Do migration
-`php artisan migrate`
+```
+php artisan migrate
+```
 
 ## Run App
-`php artisan serve`
+```
+php artisan serve
+```
 
 ## License
 
