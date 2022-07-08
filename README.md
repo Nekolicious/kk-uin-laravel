@@ -1,7 +1,10 @@
 ## KK Web UIN SGD
 Kerja Praktek Lustiyana & Sabili
 
-## Environment
+## First Installation
+Update composer
+`composer update`
+
  Create `.env` file contains :
  ```
  APP_NAME="KK UINSGD"
@@ -68,8 +71,12 @@ VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ```
 
+Do migration
+`php artisan migrate`
+
+## Run App
+`php artisan serve`
 
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# kk-uin-laravel
