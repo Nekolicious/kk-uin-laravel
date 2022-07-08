@@ -27,8 +27,8 @@ class UserController extends Controller
             'name' => $request->name,
             'nipnim' => $request->nipnim,
             'email' => $request->email,
-            'hp_number'=>$request->hp_number,
-            'category_kk'=>$request->category_kk,
+            'notelp'=>$request->hp_number,
+            'kk'=>$request->category_kk,
             'password' => Hash::make($request->password),
         ]);
         $user->save();

@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('notelp');
             $table->string('kk');
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('hp_number')->nullable();
-            $table->string('category_kk')->nullable();
             $table->string('password');
             $table->boolean('isAdmin')->default(0);
             $table->boolean('status')->default(0);
