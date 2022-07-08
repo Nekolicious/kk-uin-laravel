@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('nipnim')->unique();
             $table->string('email')->unique();
+            $table->string('notelp');
+            $table->string('kk');
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('hp_number')->nullable();
             $table->string('category_kk')->nullable();
