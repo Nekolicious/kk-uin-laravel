@@ -33,7 +33,7 @@
                     </ul>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link" href="register.html">Daftar</a>
+                    <a class="nav-link" href="{{ route('register') }}">Daftar</a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a href="#" class="btn btn-secondary nav-link text-white active px-lg-4 rounded-0" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Masuk</a>
