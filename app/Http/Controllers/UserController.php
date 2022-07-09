@@ -35,4 +35,20 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('register_success')->with('success', 'Registrasi Berhasil. Silahkan masuk');
     }
+
+    public function login(){
+        $data['title'] = 'Login';
+        return view('user/master', $data);
+    }
+    public function login_action(Request $request){
+        $request->validate([
+            'nipnim'=>'required',
+            'password'=>'required',
+        ]);
+        if(auth()->attempt(['nipnim'=>$request->nipnim, 'password'=>$request->password])) {
+            $request->session()->regenerate();
+            return redirect()->intended('header_akun');
+        }
+        return back()->withErrors(['password'=>'Password atau NIM salah!']);
+    }
 }
