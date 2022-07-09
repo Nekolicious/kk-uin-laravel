@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,12 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('kelompok-keahlian', [PageController::class, 'kk'])->name('kk');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function(){
+    // Route with auth required
 });
 
 Route::get('register', [UserController::class, 'register'])->name('register');
