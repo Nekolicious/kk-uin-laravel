@@ -1,0 +1,23 @@
+.bg-gray {
+    background-color: rgb(215, 215, 215);
+}
+
+.article-p {
+    text-indent: 30px;
+}
+
+.article-img {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+@media (min-width: 280px) and (max-width: 360px)  {
+    #header h1, #header h5 {
+        font-size: 0.8rem !important;
+    }
+
+    #research-4th img {
+        height: 420px !important;
+        object-fit: contain !important;
+    }
+}
