@@ -56,21 +56,21 @@ Register
                             </div>
 
                             <!-- KK input -->
-                            <div class="form-outline mb-3 text-start">
+                            {{-- <div class="form-outline mb-3 text-start">
                                 <label class="form-label lead" for="form3Example4">Nomor Telepon</label>
                                 <input type="text" id="form3Example4" class="form-control form-control-lg"
                                     placeholder="Masukkan nomor KK" name="kk" value="{{ old('kk') }}" />
-                            </div>
-                            {{-- <div class="form-outline mb-3 text-start">
+                            </div> --}}
+                            <div class="form-outline mb-3 text-start">
                                 <label class="form-label lead" for="form3Example4">Kelompok Keahlian</label>
-                                <select class="form-select form-select-lg" aria-label="Default select example">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="kk">
                                     <option selected disabled>Pilih Kelompok Keahlian</option>
                                     <option value="prpl">Pengembangan Rekayasa Perangkat Lunak</option>
                                     <option value="vksb">Visi Komputer dan Sistem Berintelegensia</option>
                                     <option value="mdsi">Manajemen Data dan Sistem Informasi</option>
                                     <option value="skkt">Sistem Komputer dan Komputasi Terdistribusi</option>
                                 </select>
-                            </div> --}}
+                            </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-3 text-start">
