@@ -20,5 +20,6 @@ Route::get('/', function () {
 
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
-Route::get('login', [UserController::class, 'login'])->name('login');
-Route::post('login', [UserController::class, 'login_action'])->name('login.action');
+Route::get('register_success', function () {
+    return view('user/register_success');
+})->name('register_success');

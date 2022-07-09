@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('kk');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('isAdmin')->default(0);
-            $table->boolean('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
