@@ -9,13 +9,8 @@
     <title>{{ config('app.name') }} | @yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
     <!-- Css/Js-->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/forum.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/roadmap.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4d73dab561.js" crossorigin="anonymous"></script>

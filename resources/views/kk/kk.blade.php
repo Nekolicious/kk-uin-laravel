@@ -6,30 +6,34 @@ Kelompok Keahlian
 
 @section('content')
 <!-- Dosen -->
-<div class="container shadow bg-white pb-4 px-md-5 my-2 my-md-4 rounded-3 text-center">
+<div class="container shadow bg-white pb-4 px-md-5 my-4 my-md-4 rounded-3 text-center">
     <div class="py-4">
         <h3 class="fw-bold">PROFIL DOSEN</h3>
     </div>
     <div class="row align-items-start">
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6 my-2">
             <div class="card">
-                <div class="container">
+                <div class="container text-start">
                     <div class="row">
-                        <div class="col">
+                        <div class="col d-flex align-items-center">
                             <img src="assets/img/profil-dosen.png" class="d-block img-fluid"/>
                         </div>
                         <div class="col">
-                            <span class="lead">Nama    : <span>Dosen</span></span><br>
-                            <span class="lead">NIP     : <span>1234567890</span></span><br>
-                            <span class="lead">Jabatan : <span>Dosen</span></span><br>
-                            <span class="lead">Email   : <span>dosen@email.com</span></span>
+                            <span class="lead fs-6">Nama : </span>
+                            <p class="text-end m-0">Lorem Ipsum</p>
+                            <span class="lead fs-6">NIP : </span>
+                            <p class="text-end m-0">123123123</p>
+                            <span class="lead fs-6">Jabatan : </span>
+                            <p class="text-end m-0">Dosen</p>
+                            <span class="lead fs-6">Email : </span>
+                            <p class="text-end m-0">Dosen@email.com</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-outline-dark fw-bold border-4 rounded-0 px-5">
+    <button type="button" class="btn btn-outline-dark fw-bold border-4 rounded-0 px-5 mt-3">
         Selengkapnya
     </button>
 </div>
@@ -57,7 +61,7 @@ Kelompok Keahlian
         <h4 class="fw-bold">ARTIKEL TERKAIT</h4>
     </div>
     <div class="row align-items-start">
-        <div class="col">
+        <div class="col-12 col-md-6">
             <div class="card pt-0 px-0 mb-4">
                 <img src="assets/img/post-dummy.png" class="card-img-top" alt="..." />
                 <div class="card-body text-start">
@@ -70,7 +74,7 @@ Kelompok Keahlian
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
             <div class="card pt-0 px-0 mb-4">
                 <img src="assets/img/post-dummy.png" class="card-img-top" alt="..." />
                 <div class="card-body text-start">
@@ -83,9 +87,7 @@ Kelompok Keahlian
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row align-items-start">
-        <div class="col">
+        <div class="col-12 col-md-6">
             <div class="card pt-0 px-0 mb-4">
                 <img src="assets/img/post-dummy.png" class="card-img-top" alt="..." />
                 <div class="card-body text-start">
@@ -98,7 +100,7 @@ Kelompok Keahlian
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
             <div class="card pt-0 px-0 mb-4">
                 <img src="assets/img/post-dummy.png" class="card-img-top" alt="..." />
                 <div class="card-body text-start">

@@ -90,7 +90,7 @@
                     </div>
 
                     <p class="small fw-bold mt-2 pt-1 mb-0">
-                        Belum punya akun? <a href="#!" class="link-danger">Daftar</a>
+                        Belum punya akun? <a href="{{ route('register') }}" class="link-danger">Daftar</a>
                     </p>
             </div>
             </form>

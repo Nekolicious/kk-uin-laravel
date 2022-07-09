@@ -1,6 +1,6 @@
 <footer class="shadow text-center text-lg-start bg-light">
     <!-- Search Forum -->
-    <div class="bg-white py-3 py-md-5 text-center">
+    <div class="bg-white py-3 py-md-5 text-center" id="footersearch">
         <div>
             <h3 class="fw-bold">FORUM DISKUSI</h3>
         </div>
@@ -14,6 +14,9 @@
             Pergi ke Forum &#8250;
         </button>
     </div>
+    @if(View::hasSection('hidesearch'))
+        @yield('hidesearch')
+    @endif
     <!-- Search Forum End-->
     <!-- Copyright -->
     <div class="lead text-center p-2 p-md-4 text-white bg-secondary">

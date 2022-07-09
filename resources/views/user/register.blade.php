@@ -89,3 +89,10 @@ Register
 </div>
 <!-- Register Page End -->
 @endsection
+
+@section('hidesearch')
+<script>
+    var x = document.getElementById("footersearch");
+    x.style.display = "none";
+</script>
+@endsection

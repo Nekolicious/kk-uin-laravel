@@ -11,11 +11,11 @@ Home
     <div class="card-img-overlay d-flex flex-column justify-content-center">
         <div class="col-md-8 px-0 text-center mx-auto">
             <div>
-                <h1 class="fw-bold">
+                <h1 id="kk-title" class="fw-bold">
                     KELOMPOK KEAHLIAN<br />JURUSAN TEKNIK INFORMATIKA<br />UIN SUNAN
                     GUNUNG DJATI BANDUNG
                 </h1>
-                <h5 class="lead">
+                <h5 id="kk-title" class="lead">
                     Kelompok Keahlian merupakan wadah bagi mahasiswa dan dosen untuk
                     meningkatkan kompetensi dan penelitian.
                 </h5>
