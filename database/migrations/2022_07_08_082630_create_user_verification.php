@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_verification', function (Blueprint $table) {
-            $table->id();
+            $table->increments('verified_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('verified');

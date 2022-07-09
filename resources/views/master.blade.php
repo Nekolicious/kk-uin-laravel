@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} || @yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
     <!-- Css/Js-->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
