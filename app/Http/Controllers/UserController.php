@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -45,10 +46,17 @@ class UserController extends Controller
             'nipnim'=>'required',
             'password'=>'required',
         ]);
-        if(auth()->attempt(['nipnim'=>$request->nipnim, 'password'=>$request->password])) {
+        if(Auth::attempt(['nipnim'=>$request->nipnim, 'password'=>$request->password])) {
             $request->session()->regenerate();
             return redirect()->intended('header_akun');
         }
         return back()->withErrors(['password'=>'Password atau NIM salah!']);
+    }
+    
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+        return redirect('/');
     }
 }
