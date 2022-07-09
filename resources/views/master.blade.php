@@ -20,7 +20,6 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4d73dab561.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="bg-gray">
     <!-- Navbar -->
     @include('header')

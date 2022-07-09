@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-Register Success
+Success
 @endsection
 
 @section('content')
