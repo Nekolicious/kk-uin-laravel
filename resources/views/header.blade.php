@@ -32,12 +32,31 @@
                         </li>
                     </ul>
                 </li>
+                @guest
                 <li class="nav-item px-lg-3">
                     <a class="nav-link" href="{{ route('register') }}">Daftar</a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a href="#" class="btn btn-secondary nav-link text-white active px-lg-4 rounded-0" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Masuk</a>
                 </li>
+                @endguest
+
+                @auth
+                <li class="nav-item dropdown px-lg-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="profile.html">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                        </li>
+                    </ul>
+                    <!-- <a href="#"><img src="images/profile-logo.png" alt="" /></a> -->
+                </li>
+                @endauth
             </ul>
         </div>
     </div>
@@ -51,6 +70,7 @@
 <p class="alert alert-danger">{{ $err }}</p>
 @endforeach
 @endif
+<!-- Login Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">

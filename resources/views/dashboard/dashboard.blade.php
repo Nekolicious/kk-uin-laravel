@@ -77,7 +77,7 @@
                 <li class="dropdown user user-menu mt-2 px-3">
                     <a href="#" class="dropdown-toggle  text-dark" data-toggle="dropdown">
                         <img src="dist/img/user2-160x160.jpg" alt="User Image" class="user-image img-circle elevation-2">
-                        <span class="d-none d-md-inline">User</span>
+                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu ">
                     <div class="user-panel d-flex">
@@ -86,8 +86,8 @@
                             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
                             <p>
-                                User - user@email.com
-                                <small>Hi</small>
+                                <span class="fs-4">{{ Auth::user()->name }}</span>
+                                <span class="fw-lighter">{{ Auth::user()->email }}</span>
                             </p>
                         </li>
 
@@ -96,8 +96,7 @@
                                 <a href="#" class="btn btn-default btn-flat float-left"><i class="nav-icon fa fa-fw fa-user text-lightblue"></i>Profil</a>
                             </div>
                             <div class="pull-right ">
-                                <a href="#" class="btn btn-default btn-flat float-right" onclick="$('#logout-form').submit()"> <i class="nav-icon fa fa-fw fa-power-off text-red"></i>Keluar</a>
-
+                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"> <i class="nav-icon fa fa-fw fa-power-off text-red"></i>Keluar</a>
                             </div>
                         </li>
                     </ul>
