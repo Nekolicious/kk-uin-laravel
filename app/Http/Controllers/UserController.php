@@ -54,7 +54,7 @@ class UserController extends Controller
                 return redirect()->intended('dashboard');
             }
             else{
-                return redirect()->route('header_akun')->withErrors(['error'=>'Silahkan masuk sebagai admin']);
+                return redirect()->route('home');
             }
         }
         return back()->withErrors(['password'=>'Password atau NIM salah!']);
