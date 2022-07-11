@@ -48,7 +48,7 @@ class UserController extends Controller
         ]);
         if(Auth::attempt(['nipnim'=>$request->nipnim, 'password'=>$request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('header_akun');
+            return redirect()->route('home');
         }
         return back()->withErrors(['password'=>'Password atau NIM salah!']);
     }
