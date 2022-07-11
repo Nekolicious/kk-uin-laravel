@@ -64,6 +64,15 @@ Register
                     </select>
                 </div>
 
+                <div class="form-outline mb-3 text-start">
+                    <label class="form-label lead" for="form3Example4">Status</label>
+                    <select class="form-select form-select-lg" aria-label="Default select example" name="is_admin">
+                        <option selected disabled>Status</option>
+                        <option value="1">Dosen</option>
+                        <option value="0">Mahasiswa</option>
+                    </select>
+                </div>
+
                 <!-- Password input -->
                 <div class="form-outline mb-3 text-start">
                     <label class="form-label lead" for="form3Example4">Password</label>

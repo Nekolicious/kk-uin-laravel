@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function(){
     // Route with auth required
 });
 
+Route::get('dashboard/dashboard', [DashboardController::class, 'dashboard_dashboard'])->name('dashboard.dashboard')->middleware('is_admin');
+
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
 Route::get('login', [UserController::class, 'login'])->name('login');

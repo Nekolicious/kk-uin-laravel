@@ -24,6 +24,7 @@ class UserController extends Controller
             'kk'=>'required',
             'password'=>'required',
             'password_confirmation'=>'required|same:password',
+            'is_admin'=>'required',
         ]);
         $user = new User([
             'name' => $request->name,
@@ -32,6 +33,7 @@ class UserController extends Controller
             'notelp'=>$request->notelp,
             'kk'=>$request->kk,
             'password' => Hash::make($request->password),
+            'is_admin'=>$request->is_admin,
         ]);
         $user->save();
         return redirect()->route('register_success')->with('success', 'Registrasi Berhasil. Silahkan masuk');
@@ -47,8 +49,13 @@ class UserController extends Controller
             'password'=>'required',
         ]);
         if(Auth::attempt(['nipnim'=>$request->nipnim, 'password'=>$request->password])) {
-            $request->session()->regenerate();
-            return redirect()->intended('header_akun');
+            if(Auth::user()->is_admin == 1){
+                $request->session()->regenerate();
+                return redirect()->intended('dashboard');
+            }
+            else{
+                return redirect()->route('header_akun')->withErrors(['error'=>'Silahkan masuk sebagai admin']);
+            }
         }
         return back()->withErrors(['password'=>'Password atau NIM salah!']);
     }
