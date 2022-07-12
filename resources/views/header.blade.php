@@ -50,6 +50,11 @@
                         <li>
                             <a class="dropdown-item" href="profile.html">Profile</a>
                         </li>
+                        @if (Auth::user()->is_admin)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('dashboard')}}">Dashboard</a>
+                        </li>
+                        @endif
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
                         </li>

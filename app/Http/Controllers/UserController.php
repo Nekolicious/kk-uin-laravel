@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function show() {
+        $users = User::all();
+
+        return view('dashboard.users', compact('users'));
+    }
     public function register(){
         $data['title'] = "Register";
         return view('user/register', $data);

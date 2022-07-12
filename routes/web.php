@@ -19,12 +19,16 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('kelompok-keahlian', [PageController::class, 'kk'])->name('kk');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::group(['middleware' => 'auth'], function(){
+// Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::group(['middleware' => 'auth'], function(){
     // Route with auth required
-});
+// });
 
-Route::get('dashboard/dashboard', [DashboardController::class, 'dashboard_dashboard'])->name('dashboard.dashboard')->middleware('is_admin');
+// Dashboard middleware construct in its controller
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('dashboard/usermgmt/pending', [DashboardController::class, 'pendinguser'])->name('dashboard/pending');
+Route::get('dashboard/usermgmt/users', [UserController::class, 'show'])->name('dashboard/users');
+Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])->name('dashboard/admins');
 
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
