@@ -28,12 +28,14 @@ Member Approvements
           </tr>
         </thead>
         <tbody>
+          @foreach ($users as $value)
+          @if ($value->is_admin == 0)
           <tr>
-            <td>15/05/2022</td>
-            <td>1197050001</td>
-            <td>Agus agus agus agus agus</td>
-            <td>2019</td>
-            <td>PRPL</td>
+            <td>{{ $value->created_at }}</td>
+            <td>{{ $value->nipnim }}</td>
+            <td>{{ $value->name }}</td>
+            <td>{{ $value->email }}</td>
+            <td>{{ $value->kk }}</td>
             <td>
               <button type="button" class="btn btn-danger">
                 Belum Disetujui
@@ -43,36 +45,8 @@ Member Approvements
               <a class="btn btn-secondary action" role="button" aria-disabled="false">Approve</a>
             </td>
           </tr>
-          <tr>
-            <td>15/05/2022</td>
-            <td>1197050001</td>
-            <td>Agus</td>
-            <td>2019</td>
-            <td>PRPL</td>
-            <td>
-              <button type="button" class="btn btn-danger">
-                Belum Disetujui
-              </button>
-            </td>
-            <td>
-              <a class="btn btn-secondary action" role="button" aria-disabled="false">Approve</a>
-            </td>
-          </tr>
-          <tr>
-            <td>15/05/2022</td>
-            <td>1197050001</td>
-            <td>Agus</td>
-            <td>2019</td>
-            <td>PRPL</td>
-            <td>
-              <button type="button" class="btn btn-success">
-                Disetujui
-              </button>
-            </td>
-            <td>
-              <a class="btn btn-secondary disabled action" role="button" aria-disabled="true">Approve</a>
-            </td>
-          </tr>
+          @endif
+          @endforeach
         </tbody>
       </table>
     </div>

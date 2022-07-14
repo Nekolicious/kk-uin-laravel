@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -19,7 +20,8 @@ class DashboardController extends Controller
 
     public function pendinguser()
     {
-        return view('dashboard.approve');
+        $users = DB::table('users')->get();
+        return view('dashboard.approve', ['users'=>$users]);
     }
 
     public function users()
@@ -29,6 +31,7 @@ class DashboardController extends Controller
 
     public function admins()
     {
-        return view('dashboard.admins');
+        $users = DB::table('users')->get();
+        return view('dashboard.approve', ['users'=>$users]);
     }
 }
