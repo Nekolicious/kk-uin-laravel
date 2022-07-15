@@ -19,7 +19,6 @@ class IsAdmin
         if (auth()->user()->is_admin == 1) {
             return $next($request);
         }
-
         return back()->withErrors(['error' => 'Anda tidak memiliki akses']);
     }
 }

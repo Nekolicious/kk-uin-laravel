@@ -33,8 +33,8 @@ Users
                         <td class="text-capitalize">{{ $value->name }}</td>
                         <td class="text-uppercase">{{ $value->kk }}</td>
                         <td>{{ $value->email }}</td>
-                        <td><button class="btn btn-primary btn-block"><i class="fa-solid fa-pencil"></i></button></td>
-                        <td><button class="btn btn-danger btn-block"><i class="fa-solid fa-trash-can"></i></button></td>
+                        <td><button class="btn btn-primary btn-block"><i class="fa-solid fa-pencil"></i><span class="px-1">Edit</span></button></td>
+                        <td><button class="btn btn-danger btn-block"><i class="fa-solid fa-trash-can"></i><span class="px-1">Hapus</span></button></td>
                     </tr>
                     @endforeach
                 </tbody>

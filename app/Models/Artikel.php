@@ -11,5 +11,6 @@ class Artikel extends Model
 
     protected $table = 'artikel';
     protected $primarykey = 'artikel_id';
-    protected $guard = [];
+
+    protected $fillable = ['title','slug','body','kategori_id'];
 }

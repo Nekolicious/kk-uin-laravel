@@ -42,7 +42,8 @@ Member Approvements
               </button>
             </td>
             <td>
-              <a class="btn btn-secondary action" role="button" aria-disabled="false">Approve</a>
+              
+              <a class="btn btn-success action" role="button" aria-disabled="false"><i class="fa-solid fa-check"></i><span class="px-1">Approve</span></a>
             </td>
           </tr>
           @endif

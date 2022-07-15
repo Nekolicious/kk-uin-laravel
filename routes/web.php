@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -24,23 +25,32 @@ Route::get('kelompok-keahlian', [PageController::class, 'kk'])->name('kk');
     // Route with auth required
 // });
 
-// Dashboard middleware construct in its controller
+// Dashboard, middleware construct in its controller
+// User management
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('dashboard/usermgmt/pending', [DashboardController::class, 'pendinguser'])->name('dashboard/pending');
-Route::get('dashboard/usermgmt/users', [DashboardController::class, 'users'])->name('dashboard/users');
-Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])->name('dashboard/admins');
+Route::get('dashboard/usermgmt/pending', [DashboardController::class, 'pendinguser'])->name('dashboard.pending');
+Route::get('dashboard/usermgmt/users', [DashboardController::class, 'users'])->name('dashboard.users');
+Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])->name('dashboard.admins');
 
+// Artikel or aktivitas
+Route::get('dashboard/artikel/create', [ArtikelController::class, 'create'])->name('dashboard.artikel.create');
+Route::get('dashboard/artikel/insert', [ArtikelController::class, 'insert'])->name('dashboard.artikel.insert');
+Route::get('dashboard/artikel', [ArtikelController::class, 'show'])->name('dashboard.artikel');
+Route::get('dashboard/artikel/edit', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
+Route::get('dashboard/artikel/update', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
+Route::get('dashboard/artikel/delete', [ArtikelController::class, 'delete'])->name('dashboard.artikel.delete');
+
+// Register & login
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login.action');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('approve', [UserController::class, 'approve'])->name('approve');
-
 Route::get('register_success', function () {
     return view('user/register_success');
 })->name('register_success');
 
-Route::get('header_akun', function () {
-    return view('header_akun');
-})->name('header_akun');
+// Route::get('header_akun', function () {
+//     return view('header_akun');
+// })->name('header_akun');
