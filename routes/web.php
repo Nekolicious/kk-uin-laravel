@@ -27,7 +27,7 @@ Route::get('kelompok-keahlian', [PageController::class, 'kk'])->name('kk');
 // Dashboard middleware construct in its controller
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('dashboard/usermgmt/pending', [DashboardController::class, 'pendinguser'])->name('dashboard/pending');
-Route::get('dashboard/usermgmt/users', [UserController::class, 'show'])->name('dashboard/users');
+Route::get('dashboard/usermgmt/users', [DashboardController::class, 'users'])->name('dashboard/users');
 Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])->name('dashboard/admins');
 
 Route::get('register', [UserController::class, 'register'])->name('register');

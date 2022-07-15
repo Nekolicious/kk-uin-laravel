@@ -26,12 +26,13 @@ class DashboardController extends Controller
 
     public function users()
     {
-        return view('dashboard.users');
+        $users = DB::table('users')->get();
+        return view('dashboard.users', ['users'=>$users]);
     }
 
     public function admins()
     {
         $users = DB::table('users')->get();
-        return view('dashboard.approve', ['users'=>$users]);
+        return view('dashboard.admins', ['users'=>$users]);
     }
 }
