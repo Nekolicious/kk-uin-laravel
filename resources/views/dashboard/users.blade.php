@@ -21,6 +21,8 @@ Users
                         <th>NIP/NIM</th>
                         <th>Nama</th>
                         <th>Kelompok Keahlian</th>
+                        <th>Email</th>
+                        <th colspan="2">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +32,9 @@ Users
                         <td>{{ $value->nipnim }}</td>
                         <td class="text-capitalize">{{ $value->name }}</td>
                         <td class="text-uppercase">{{ $value->kk }}</td>
+                        <td>{{ $value->email }}</td>
+                        <td><button class="btn btn-primary btn-block"><i class="fa-solid fa-pencil"></i></button></td>
+                        <td><button class="btn btn-danger btn-block"><i class="fa-solid fa-trash-can"></i></button></td>
                     </tr>
                     @endforeach
                 </tbody>
