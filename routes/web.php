@@ -35,6 +35,7 @@ Route::post('register', [UserController::class, 'register_action'])->name('regis
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login.action');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
+Route::get('approve', [UserController::class, 'approve'])->name('approve');
 
 Route::get('register_success', function () {
     return view('user/register_success');
