@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +35,17 @@ Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])-
 
 // Artikel or aktivitas
 Route::get('dashboard/artikel/create', [ArtikelController::class, 'create'])->name('dashboard.artikel.create');
-Route::get('dashboard/artikel/insert', [ArtikelController::class, 'insert'])->name('dashboard.artikel.insert');
+Route::post('dashboard/artikel/store', [ArtikelController::class, 'store'])->name('dashboard.artikel.store');
 Route::get('dashboard/artikel', [ArtikelController::class, 'show'])->name('dashboard.artikel');
 Route::get('dashboard/artikel/edit', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
-Route::get('dashboard/artikel/update', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
+Route::post('dashboard/artikel/update', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
 Route::get('dashboard/artikel/delete', [ArtikelController::class, 'delete'])->name('dashboard.artikel.delete');
+
+// Kategori
+Route::get('dashboard/kategori', [KategoriController::class, 'show'])->name('dashboard.kategori');
+Route::post('dashboard/kategori/store', [KategoriController::class, 'store'])->name('dashboard.kategori.store');
+Route::post('dashboard/kategori/update', [KategoriController::class, 'update'])->name('dashboard.kategori.update');
+Route::get('dashboard/kategori/delete', [KategoriController::class, 'delete'])->name('dashboard.kategori.delete');
 
 // Register & login
 Route::get('register', [UserController::class, 'register'])->name('register');

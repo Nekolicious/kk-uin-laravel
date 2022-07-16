@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
-use Illuminate\Support\Facades\DB;
 
 class ArtikelController extends Controller
 {
@@ -18,17 +17,22 @@ class ArtikelController extends Controller
         return view('dashboard.artikel.create');
     }
 
-    public function insert() {
-        
+    public function store(Request $request) {
+        $request->validate([
+            'inputTitle'=>'required',
+            'inputHeader'=>'required',
+            'wysiwyg'=>'required',
+            'inputKategori'=>'required',
+        ]);
     }
     
     public function show() {
-        $data = DB::table('artikel')->get();
+        $data = Artikel::all();
         return view('dashboard.artikel.show', ['data'=>$data]);
     }
 
     public function edit($id) {
-        $data = DB::table('artikel')->where('artikel_id', $id)->get();
+        $data = Artikel::all()->where('artikel_id', $id);
         return view('dashboard.artikel.edit', ['data'=>$data]);
     }
 

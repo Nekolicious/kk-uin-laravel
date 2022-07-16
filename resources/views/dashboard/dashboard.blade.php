@@ -169,10 +169,16 @@
                                 </a>
                             </li>
                         </ul>
-                        <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ route('dashboard.artikel') }}" class="nav-link {{ Request::is('dashboard/artikel') ? 'active':'' }}">
                             <i class="nav-icon fas fa-newspaper"></i>
                             <p>Artikel</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.kategori') }}" class="nav-link {{ Request::is('dashboard/kategori') ? 'active':'' }}">
+                        <i class="nav-icon fa-solid fa-layer-group"></i>
+                            <p>Kategori</p>
                         </a>
                     </li>
                     </li>
@@ -195,7 +201,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             @section('breadcrumb')
-                                <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li> 
+                            <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
                             @show
                         </ol>
                     </div><!-- /.col -->
