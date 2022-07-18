@@ -132,8 +132,6 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <a href="{{ URL::route('dashboard')}}" class="nav-link {{ Request::is('dashboard') ? 'active':'' }}">
                             <i class="nav-icon fas fa-chart-line"></i>
@@ -170,14 +168,14 @@
                             </li>
                         </ul>
                     <li class="nav-item">
-                        <a href="{{ route('dashboard.artikel') }}" class="nav-link {{ Request::is('dashboard/artikel') ? 'active':'' }}">
+                        <a href="{{ route('dashboard.artikel') }}" class="nav-link {{ Request::is('dashboard/artikel*') ? 'active':'' }}">
                             <i class="nav-icon fas fa-newspaper"></i>
                             <p>Artikel</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.kategori') }}" class="nav-link {{ Request::is('dashboard/kategori') ? 'active':'' }}">
-                        <i class="nav-icon fa-solid fa-layer-group"></i>
+                            <i class="nav-icon fa-solid fa-layer-group"></i>
                             <p>Kategori</p>
                         </a>
                     </li>
@@ -206,6 +204,15 @@
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+                {{-- Error alert --}}
+                @foreach($errors->all() as $err)
+                <div class="col m-0 alert alert-danger alert-dismissible fade show"  role="alert">
+                    <strong>Error!</strong> {{ $err }}.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endforeach
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->

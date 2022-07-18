@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
+use App\Models\Kategori;
 
 class ArtikelController extends Controller
 {
@@ -14,7 +15,8 @@ class ArtikelController extends Controller
     }
 
     public function create() {
-        return view('dashboard.artikel.create');
+        $kategori = Kategori::all();
+        return view('dashboard.artikel.create', ['kategori'=>$kategori]);
     }
 
     public function store(Request $request) {

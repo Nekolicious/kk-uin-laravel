@@ -15,35 +15,39 @@ Artikel Baru
     <!-- Small boxes (Stat box) -->
     <form method="POST" action="{{ route('dashboard.artikel.store') }}">
         @csrf
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-6">
                 <label for="inputTitle" class="form-label">Judul</label>
-                <input type="text" class="form-control" id="inputTitle">
+                <input type="text" class="form-control" name="judul" id="inputTitle">
             </div>
             <div class="col-6">
                 <label for="inputHeader" class="form-label">Header</label>
                 <div class="input-group mb-3">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="inputFile">
-                        <label class="custom-file-label" for="inputFile">Choose file</label>
+                        <label class="custom-file-label" name="header" for="inputFile">Choose file</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="mb-3">
+            <label for="inputSlug" class="form-label">Slug <small class="text-info">*Opsional</small></label>
+            <input type="text" class="form-control" name="slug" id="inputSlug">
+        </div>
+        <div class="mb-3">
             <div class="form-group">
                 <label for="inputKategori">Kategori</label>
                 <select id="inputKategori" class="form-control">
-                    <option selected disabled>Choose...</option>
+                    <option selected disabled>Pilih...</option>
                     @foreach ($kategori as $key)
-                    <option>{{ $key->kategori }}</option>
+                    <option value="{{ $key->kategori_id }}" name="{{ $key->nama }}">{{ $key->nama }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="mb-3">
             <label for="inputBody" class="form-label">Isi</label>
-            <div id="wysiwyg">
+            <div id="wysiwyg" name="body">
             </div>
         </div>
         <div class="d-flex justify-content-end">

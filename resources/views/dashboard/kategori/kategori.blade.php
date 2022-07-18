@@ -28,14 +28,19 @@ Kategori
                 <tbody>
                     @foreach ($data as $kategori)
                     <tr>
+                        <input type="hidden" id="id-kategori" name="id" value="{{ $kategori->kategori_id }}">
                         <td>{{ $kategori->nama }}</td>
                         <td>0</td>
                         <td>
-                            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal">
+                            <button class="btn btn-primary btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#editModal">
                                 <i class="fa-solid fa-pencil"></i>Edit
                             </button>
                         </td>
-                        <td><button class="btn btn-danger btn-block"><i class="fa-solid fa-trash-can"></i>Hapus</button></td>
+                        <td>
+                            <button class="btn btn-danger btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#deleteModal">
+                                <i class="fa-solid fa-trash-can"></i>Hapus
+                            </button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -58,10 +63,12 @@ Kategori
                 <form method="POST" action="{{ route('dashboard.kategori.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="inputKategori" class="col-form-label">Nama Kategori</label>
-                        <input type="text" id="inputKategori" name="nama" required="required">
+                        <label for="nama-kategori" class="col-form-label">Nama Kategori</label>
+                        <input type="text" class="form-control" id="nama-kategori" name="nama" required="required">
                     </div>
-                    <input type="submit" class="btn btn-success" value="Simpan">
+                    <div class="modal-footer pb-0">
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </div>
                 </form>
             </div>
 
@@ -83,14 +90,73 @@ Kategori
                 <form method="POST" action="{{ route('dashboard.kategori.update') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="inputKategori" class="col-form-label">Nama Kategori</label>
-                        <input type="text" id="inputKategori" name="nama" required="required">
+                        <input id="id-kategori" type="hidden" name="id" value="">
+                        <label for="nama-kategori" class="col-form-label">Nama Kategori</label>
+                        <input type="text" class="form-control" id="nama-kategori" name="nama" required="required">
                     </div>
-                    <input type="submit" class="btn btn-success" value="Simpan">
+                    <div class="modal-footer pb-0">
+                        <button type="submit" class="btn btn-success">Ubah</button>
+                    </div>
                 </form>
             </div>
 
         </div>
     </div>
 </div>
+
+<!-- Modal delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-warning">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Penghapusan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="GET" action="{{ route('dashboard.kategori.delete') }}">
+                    @csrf
+                    <div class="form-group text-center">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <input id="id-kategori" type="hidden" name="id" value="">
+                        <p>Yakin ingin menghapus <span class="font-weight-bold" id="item">item</span>? Tindakan ini tidak dapat diurungkan!</p>
+                    </div>
+                    <div class="modal-footer pb-0">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+    $('#editModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget)
+        var id = $('#id-kategori').val()
+        var kategori = button.data('kategori')
+        var modal = $(this)
+
+        modal.find('.modal-title').text('Edit kategori \"' + kategori + '\"')
+        modal.find('.modal-body #id-kategori').val(id)
+        modal.find('.modal-body #nama-kategori').val(kategori)
+    })
+</script>
+
+<script>
+    $('#deleteModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget)
+        var id = $('#id-kategori').val()
+        var kategori = button.data('kategori')
+        var modal = $(this)
+
+        modal.find('.modal-body #id-kategori').val(id)
+        modal.find('.modal-body #item').text(kategori)
+    })
+</script>
 @endsection
