@@ -37,7 +37,7 @@ Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])-
 Route::get('dashboard/artikel/create', [ArtikelController::class, 'create'])->name('dashboard.artikel.create');
 Route::post('dashboard/artikel/store', [ArtikelController::class, 'store'])->name('dashboard.artikel.store');
 Route::get('dashboard/artikel', [ArtikelController::class, 'show'])->name('dashboard.artikel');
-Route::get('dashboard/artikel/edit', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
+Route::get('dashboard/artikel/edit/{artikel_id}', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
 Route::post('dashboard/artikel/update', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
 Route::get('dashboard/artikel/delete', [ArtikelController::class, 'delete'])->name('dashboard.artikel.delete');
 

@@ -10,7 +10,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         if (Kategori::where('nama', $request->nama)->exists()) {
-            return back()->withErrors(['Data sudah ada']);
+            return back()->withErrors(['Data sudah ada.']);
         } else {
             $request->validate([
                 'nama' => 'required',
@@ -32,7 +32,7 @@ class KategoriController extends Controller
     public function update(Request $request)
     {
         if (Kategori::where('nama', $request->nama)->exists()) {
-            return back()->withErrors(['Data sudah ada']);
+            return back()->withErrors(['Data sudah ada.']);
         } else {
             Kategori::where('kategori_id', $request->id)
                 ->update([

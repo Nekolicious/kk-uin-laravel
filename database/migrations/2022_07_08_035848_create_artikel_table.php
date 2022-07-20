@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('artikel', function (Blueprint $table) {
             $table->increments('artikel_id');
             $table->string('title');
-            $table->string('slug');
-            $table->text('body');
-            $table->unsignedInteger('author_id');
+            $table->string('slug')->unique();
+            $table->longText('body');
+            $table->text('header')->nullable();
+            $table->unsignedBigInteger('author_id');
             $table->unsignedInteger('kategori_id');
             $table->timestamps();
 
-            $table->foreign('author_id')->references('admin_id')->on('admins')->onDelete('cascade');
+            $table->foreign('author_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->foreign('kategori_id')->references('kategori_id')->on('kategori')->onDelete('cascade');
         });
     }

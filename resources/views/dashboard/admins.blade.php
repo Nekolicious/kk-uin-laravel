@@ -19,7 +19,7 @@ Admins
                 <thead>
                     <tr>
                         <th>Tanggal</th>
-                        <th>NIM</th>
+                        <th>NIP/NIM</th>
                         <th>Nama</th>
                         <th>Angkatan</th>
                         <th>Kelompok Keahlian</th>

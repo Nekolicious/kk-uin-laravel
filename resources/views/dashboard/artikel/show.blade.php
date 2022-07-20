@@ -23,8 +23,8 @@ Artikel
                 <thead>
                     <tr>
                         <th>Tanggal/Waktu</th>
+                        <th>Header</th>
                         <th>Judul</th>
-                        <th>Body</th>
                         <th>Slug</th>
                         <th>Kategori</th>
                         <th>Author</th>
@@ -34,14 +34,22 @@ Artikel
                 <tbody>
                     @foreach ($data as $artikel)
                     <tr>
+                        <input type="hidden" id="id-artikel" name="artikel_id" value="{{ $artikel->artikel_id }}">
                         <td>{{ $artikel->created_at }}</td>
+                        <td class="text-center"><img width="120px" class="img-thumbnail" src="{{ asset('/uploads/img/'.$artikel->header) }}"></td>
                         <td>{{ $artikel->title }}</td>
-                        <td>{{ $artikel->body }}</td>
                         <td>{{ $artikel->slug }}</td>
-                        <td>{{ $artikel->kategori }}</td>
-                        <td>{{ $artikel->author_id }}</td>
-                        <td><button class="btn btn-primary btn-block"><i class="fa-solid fa-pencil"></i>Edit</button></td>
-                        <td><button class="btn btn-danger btn-block"><i class="fa-solid fa-trash-can"></i>Hapus</button></td>
+                        <td>{{ $artikel->kategori->nama }}</td>
+                        <td>{{ $artikel->author->name }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-block" href="{{ route('dashboard.artikel.edit', ['artikel_id'=>$artikel->artikel_id]) }}">
+                                <i class="fa-solid fa-pencil"></i>Edit
+                            </a>
+                            <button class="btn btn-danger btn-block" data-artikel="{{ $artikel->title }}" data-toggle="modal" data-target="#deleteModal">
+                                <i class="fa-solid fa-trash-can"></i>Hapus
+                            </button>
+                        </td>
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -49,4 +57,47 @@ Artikel
         </div>
     </section>
 </div> <!-- .container-fluid -->
+
+<!-- Modal delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-warning">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Penghapusan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="GET" action="{{ route('dashboard.artikel.delete') }}">
+                    @csrf
+                    <div class="form-group text-center">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <input id="id-artikel" type="hidden" name="artikel_id" value="">
+                        <p>Yakin ingin menghapus <span class="font-weight-bold" id="item">item</span>? Tindakan ini tidak dapat diurungkan!</p>
+                    </div>
+                    <div class="modal-footer pb-0">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+    $('#deleteModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget)
+        var id = $('#id-artikel').val()
+        var artikel = button.data('artikel')
+        var modal = $(this)
+
+        modal.find('.modal-body #id-artikel').val(id)
+        modal.find('.modal-body #item').text(artikel)
+    })
+</script>
 @endsection

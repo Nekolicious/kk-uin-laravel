@@ -204,10 +204,14 @@
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+                {{-- Success alert --}}
+                @if(session('success'))
+                <p class="alert alert-success">{{ session('success') }}</p>
+                @endif
                 {{-- Error alert --}}
                 @foreach($errors->all() as $err)
-                <div class="col m-0 alert alert-danger alert-dismissible fade show"  role="alert">
-                    <strong>Error!</strong> {{ $err }}.
+                <div class="col m-0 alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> {{ $err }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
