@@ -10,7 +10,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Beranda</a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link" href="{{-- route('forum') --}}">Forum Diskusi</a>
+                    <a class="nav-link" href="{{ url('/posts') }}">Forum Diskusi</a>
                 </li>
                 <li class="nav-item dropdown px-lg-3" style="max-width: 280px">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

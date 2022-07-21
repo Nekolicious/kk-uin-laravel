@@ -22,7 +22,7 @@ Kategori
                     <tr>
                         <th class="col-6">Nama</th>
                         <th class="col-3">Jumlah Artikel</th>
-                        <th class="col-3" colspan="2">Opsi</th>
+                        <th class="col-3">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,18 +32,29 @@ Kategori
                         <td>{{ $kategori->nama }}</td>
                         <td>0</td>
                         <td>
-                            <button class="btn btn-primary btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#editModal">
-                                <i class="fa-solid fa-pencil"></i>Edit
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#deleteModal">
-                                <i class="fa-solid fa-trash-can"></i>Hapus
-                            </button>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-primary btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#editModal">
+                                        <i class="fa-solid fa-pencil"></i>Edit
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-danger btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#deleteModal">
+                                        <i class="fa-solid fa-trash-can"></i>Hapus
+                                    </button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="col-6">Nama</th>
+                        <th class="col-3">Jumlah Artikel</th>
+                        <th class="col-3">Opsi</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </section>
@@ -158,5 +169,21 @@ Kategori
         modal.find('.modal-body #id-kategori').val(id)
         modal.find('.modal-body #item').text(kategori)
     })
+</script>
+
+<script>
+    $(document).ready(
+        $(function() {
+            $('#kategoridata').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        })
+    );
 </script>
 @endsection

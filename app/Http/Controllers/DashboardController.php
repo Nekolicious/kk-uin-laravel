@@ -21,18 +21,18 @@ class DashboardController extends Controller
     public function pendinguser()
     {
         $users = DB::table('users')->get();
-        return view('dashboard.approve', ['users'=>$users]);
+        return view('dashboard.user.approve', ['users'=>$users]);
     }
 
     public function users()
     {
         $users = DB::table('users')->get();
-        return view('dashboard.users', ['users'=>$users]);
+        return view('dashboard.user.users', ['users'=>$users]);
     }
 
     public function admins()
     {
         $users = DB::table('users')->get();
-        return view('dashboard.admins', ['users'=>$users]);
+        return view('dashboard.user.admins', ['users'=>$users]);
     }
 }

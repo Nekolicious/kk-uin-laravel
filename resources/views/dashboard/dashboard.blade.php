@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- Summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -167,6 +169,7 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.artikel') }}" class="nav-link {{ Request::is('dashboard/artikel*') ? 'active':'' }}">
                             <i class="nav-icon fas fa-newspaper"></i>
@@ -179,6 +182,11 @@
                             <p>Kategori</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.gambar') }}" class="nav-link {{ Request::is('dashboard/gambar') ? 'active':'' }}">
+                            <i class="nav-icon fa-solid fa-images"></i>
+                            <p>Gambar</p>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -206,7 +214,12 @@
                 </div><!-- /.row -->
                 {{-- Success alert --}}
                 @if(session('success'))
-                <p class="alert alert-success">{{ session('success') }}</p>
+                <div class="col m-0 alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Sukses!</strong> {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
                 {{-- Error alert --}}
                 @foreach($errors->all() as $err)
@@ -269,6 +282,19 @@
     <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     @yield('script')
