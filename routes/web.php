@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,7 @@ Route::get('register_success', function () {
 // Route::get('header_akun', function () {
 //     return view('header_akun');
 // })->name('header_akun');
+
+// Forum Diskusi
+Route::resource('posts', PostController::class);
+Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
