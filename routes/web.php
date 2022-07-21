@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\GambarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,10 @@ Route::get('dashboard/artikel', [ArtikelController::class, 'show'])->name('dashb
 Route::get('dashboard/artikel/edit/{artikel_id}', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
 Route::post('dashboard/artikel/update', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
 Route::get('dashboard/artikel/delete', [ArtikelController::class, 'delete'])->name('dashboard.artikel.delete');
+
+// Gambar
+Route::get('dashboard/gambar', [GambarController::class, 'show'])->name('dashboard.gambar');
+Route::get('dashboard/gambar/delete', [GambarController::class, 'delete'])->name('dashboard.gambar.delete');
 
 // Kategori
 Route::get('dashboard/kategori', [KategoriController::class, 'show'])->name('dashboard.kategori');

@@ -28,31 +28,47 @@ Artikel
                         <th>Slug</th>
                         <th>Kategori</th>
                         <th>Author</th>
-                        <th colspan="2">Opsi</th>
+                        <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $artikel)
                     <tr>
-                        <input type="hidden" id="id-artikel" name="artikel_id" value="{{ $artikel->artikel_id }}">
+
                         <td>{{ $artikel->created_at }}</td>
                         <td class="text-center"><img width="120px" class="img-thumbnail" src="{{ asset('/uploads/img/'.$artikel->header) }}"></td>
-                        <td>{{ $artikel->title }}</td>
+                        <td>{{ $artikel->title }}<input type="hidden" id="artikelid" name="artikel_id" value="{{ $artikel->artikel_id }}"></td>
                         <td>{{ $artikel->slug }}</td>
                         <td>{{ $artikel->kategori->nama }}</td>
                         <td>{{ $artikel->author->name }}</td>
                         <td>
-                            <a class="btn btn-primary btn-block" href="{{ route('dashboard.artikel.edit', ['artikel_id'=>$artikel->artikel_id]) }}">
-                                <i class="fa-solid fa-pencil"></i>Edit
-                            </a>
-                            <button class="btn btn-danger btn-block" data-artikel="{{ $artikel->title }}" data-toggle="modal" data-target="#deleteModal">
-                                <i class="fa-solid fa-trash-can"></i>Hapus
-                            </button>
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-primary btn-block" href="{{ route('dashboard.artikel.edit', ['artikel_id'=>$artikel->artikel_id]) }}">
+                                        <i class="fa-solid fa-pencil"></i>Edit
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-danger btn-block" data-artikel="{{ $artikel->title }}" data-toggle="modal" data-target="#deleteModal">
+                                        <i class="fa-solid fa-trash-can"></i>Hapus
+                                    </button>
+                                </div>
+                            </div>
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Tanggal/Waktu</th>
+                        <th>Header</th>
+                        <th>Judul</th>
+                        <th>Slug</th>
+                        <th>Kategori</th>
+                        <th>Author</th>
+                        <th>Opsi</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </section>
@@ -92,12 +108,28 @@ Artikel
 <script>
     $('#deleteModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var id = $('#id-artikel').val()
+        var id = $('#artikelid').val()
         var artikel = button.data('artikel')
         var modal = $(this)
 
         modal.find('.modal-body #id-artikel').val(id)
         modal.find('.modal-body #item').text(artikel)
     })
+</script>
+
+<script>
+    $(document).ready(
+        $(function() {
+            $('#artikeldata').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        })
+    );
 </script>
 @endsection
