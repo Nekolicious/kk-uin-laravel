@@ -91,7 +91,9 @@
             </div>
             <div class="col-8">
               <div class="text-end">
-                Lihat Diskusi <img src="assets/img/arrow-right.svg" alt="" />
+                <a href="{{ route('posts.show', $post->id) }}" class="link-dark" style="text-decoration: none">
+                    Lihat Diskusi <img src="assets/img/arrow-right.svg" alt="" />
+                </a>
               </div>
             </div>
           </div>
