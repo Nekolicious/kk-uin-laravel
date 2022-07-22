@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\File;
 class PageController extends Controller
 {
     public function index() {
-        return view('landing.landing');
+        $artikel = Artikel::paginate(12);
+        return view('landing.landing', ['artikel'=>$artikel]);
     }
 
     public function roadmap() {
@@ -17,9 +18,14 @@ class PageController extends Controller
     }
 
     public function artikel($slug) {
-        $data = Artikel::all();
-        $imgdata = $pathdata = File::glob('uploads/img'.'/*');
-        return view('artikel.artikel', []);
+        $data = Artikel::all()->where('slug', $slug);
+        if(Artikel::where('slug', $slug)->exists()) {
+            return view('artikel.artikel', ['data'=>$data]);
+        } else {
+            $message = 'Artikel tidak ditemukan, mungkin telah dihapus atau dipindahkan.';
+            return view('artikel.artikel')->with('message', $message);
+        }
+        
     }
     
     public function kk() {

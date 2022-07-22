@@ -151,19 +151,19 @@
                         </a>
                         <ul class="nav nav-treeview bg-secondary rounded">
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.pending') }}" class="nav-link {{ Request::is('dashboard/usermgmt/pending') ? 'active':'' }}">
+                                <a href="{{ route('dashboard.usermgmt.pending') }}" class="nav-link {{ Request::is('dashboard/usermgmt/pending') ? 'active':'' }}">
                                     <i class="fas fa-user-clock nav-icon"></i>
                                     <p>Pending User</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.users') }}" class="nav-link {{ Request::is('dashboard/usermgmt/users') ? 'active':'' }}">
+                                <a href="{{ route('dashboard.usermgmt.users') }}" class="nav-link {{ Request::is('dashboard/usermgmt/users') ? 'active':'' }}">
                                     <i class="fas fa-user nav-icon"></i>
                                     <p>User</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.admins') }}" class="nav-link {{ Request::is('dashboard/usermgmt/admins') ? 'active':'' }}">
+                                <a href="{{ route('dashboard.usermgmt.admins') }}" class="nav-link {{ Request::is('dashboard/usermgmt/admins') ? 'active':'' }}">
                                     <i class="fas fa-user-shield nav-icon"></i>
                                     <p>Admin</p>
                                 </a>

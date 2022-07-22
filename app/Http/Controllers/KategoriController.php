@@ -7,6 +7,12 @@ use App\Models\Kategori;
 
 class KategoriController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('is_admin');
+    }
+
     public function store(Request $request)
     {
         if (Kategori::where('nama', $request->nama)->exists()) {

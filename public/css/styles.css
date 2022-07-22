@@ -15,15 +15,37 @@
 
 /* End */
 
-@media (min-width: 280px) and (max-width: 380px)  {
-    #header h1, #header h5 {
+@media (min-width: 280px) and (max-width: 380px) {
+
+    #header h1,
+    #header h5 {
         font-size: 1rem !important;
+    }
+
+    #research img {
+        height: 420px !important;
+        object-fit: contain !important;
+        object-position: 100% 100% !important;
     }
 
     #research-4th img {
         height: 420px !important;
         object-fit: contain !important;
+        object-position: 100% 100% !important;
     }
+}
+
+/* Artikel Image Size on Landing Page */
+
+#artikelheader {
+    height: 50vh !important;
+    object-fit: cover !important;
+    object-position: 100% 50% !important;
+}
+
+#artikelimg {
+    height: 250px;
+    object-fit: cover !important;
 }
 
 /* Forum Post Button Behavior */
@@ -35,25 +57,32 @@
 .post-response button .icon-liked {
     display: none;
 }
+
 .post-response button .icon-like {
     display: inline;
 }
+
 .post-response button:hover .icon-like {
     display: none;
 }
+
 .post-response button:hover .icon-liked {
     display: inline;
 }
+
 /* Reponse Button Behavior */
 .post-response button .icon-replied {
     display: none;
 }
+
 .post-response button .icon-reply {
     display: inline;
 }
+
 .post-response button:hover .icon-replied {
     display: inline;
 }
+
 .post-response button:hover .icon-reply {
     display: none;
 }

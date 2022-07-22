@@ -21,38 +21,47 @@ use App\Http\Controllers\GambarController;
 |
 */
 
+// User page
+// Landing Page
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('kelompok-keahlian', [PageController::class, 'kk'])->name('kk');
+Route::get('artikel/{slug}', [PageController::class, 'artikel'])->name('artikel');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route::group(['middleware' => 'auth'], function(){
-    // Route with auth required
-// });
-
-// Dashboard, middleware construct in its controller
-// User management
+// Admin Dashboard, middleware construct in its controller
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('dashboard/usermgmt/pending', [DashboardController::class, 'pendinguser'])->name('dashboard.pending');
-Route::get('dashboard/usermgmt/users', [DashboardController::class, 'users'])->name('dashboard.users');
-Route::get('dashboard/usermgmt/admins', [DashboardController::class, 'admins'])->name('dashboard.admins');
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
-// Artikel or aktivitas
-Route::get('dashboard/artikel/create', [ArtikelController::class, 'create'])->name('dashboard.artikel.create');
-Route::post('dashboard/artikel/store', [ArtikelController::class, 'store'])->name('dashboard.artikel.store');
-Route::get('dashboard/artikel', [ArtikelController::class, 'show'])->name('dashboard.artikel');
-Route::get('dashboard/artikel/edit/{artikel_id}', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
-Route::post('dashboard/artikel/update', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
-Route::get('dashboard/artikel/delete', [ArtikelController::class, 'delete'])->name('dashboard.artikel.delete');
+    // User management
+    Route::prefix('usermgmt')->name('usermgmt.')->group(function () {
+        Route::get('/pending', [DashboardController::class, 'pendinguser'])->name('pending');
+        Route::get('/users', [DashboardController::class, 'users'])->name('users');
+        Route::get('/admins', [DashboardController::class, 'admins'])->name('admins');
+    });
 
-// Gambar
-Route::get('dashboard/gambar', [GambarController::class, 'show'])->name('dashboard.gambar');
-Route::get('dashboard/gambar/delete', [GambarController::class, 'delete'])->name('dashboard.gambar.delete');
+    // Artikel or aktivitas
+    Route::get('/artikel', [ArtikelController::class, 'show'])->name('artikel');
+    Route::prefix('artikel')->name('artikel.')->group(function () {
+        Route::get('/create', [ArtikelController::class, 'create'])->name('create');
+        Route::post('/store', [ArtikelController::class, 'store'])->name('store');
+        Route::get('/edit/{artikel_id}', [ArtikelController::class, 'edit'])->name('edit');
+        Route::post('/update', [ArtikelController::class, 'update'])->name('update');
+        Route::get('/delete', [ArtikelController::class, 'delete'])->name('delete');
+    });
 
-// Kategori
-Route::get('dashboard/kategori', [KategoriController::class, 'show'])->name('dashboard.kategori');
-Route::post('dashboard/kategori/store', [KategoriController::class, 'store'])->name('dashboard.kategori.store');
-Route::post('dashboard/kategori/update', [KategoriController::class, 'update'])->name('dashboard.kategori.update');
-Route::get('dashboard/kategori/delete', [KategoriController::class, 'delete'])->name('dashboard.kategori.delete');
+    // Gambar
+    Route::get('/gambar', [GambarController::class, 'show'])->name('gambar');
+    Route::prefix('gambar')->name('gambar.')->group(function () {
+        Route::get('/delete', [GambarController::class, 'delete'])->name('delete');
+    });
+
+    // Kategori
+    Route::get('/kategori', [KategoriController::class, 'show'])->name('kategori');
+    Route::prefix('kategori')->name('kategori.')->group(function () {
+        Route::post('/store', [KategoriController::class, 'store'])->name('store');
+        Route::post('/update', [KategoriController::class, 'update'])->name('update');
+        Route::get('/delete', [KategoriController::class, 'delete'])->name('delete');
+    });
+});
 
 // Register & login
 Route::get('register', [UserController::class, 'register'])->name('register');

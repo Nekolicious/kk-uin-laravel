@@ -6,11 +6,10 @@
 
 @section('content')
 <!-- Header Artikel -->
+@if(isset($data))
 @foreach($data as $artikel)
 <div class="card shadow bg-dark text-white">
-    @foreach($imgdata as $path)
-    <img class="img-fluid" src="{{ url($path) }}" alt="" />
-    @endforeach
+    <img class="img-fluid" src="{{ asset('uploads/img/'.$artikel->header) }}" id="artikelheader" alt="Artikel Header" />
 </div>
 <!-- Header Artikel End -->
 <!-- Konten -->
@@ -26,10 +25,22 @@
     <p class="fw-light">Tanggal Rilis: <span>{{ $artikel->created_at }}</span></p>
     <p class="fw-light">Kategori: <span>{{ $artikel->kategori->nama }}</span></p>
     <!-- Isi -->
-    {! $artikel->body !}
+    {!! $artikel->body !!}
 </div>
 <!-- Konten End-->
 @endforeach
+@else
+<div class="container shadow bg-white p-5 px-md-5 my-3 my-md-5 rounded-3">
+    <div class="row align-items-center text-center">
+        <div class="col-12">
+            <i class="fa fa-triangle-exclamation"></i>
+            <p>Artikel tidak ditemukan! Mungkin telah dihapus atau dipindahkan.</p>
+        </div>
+    </div>
+</div>
+@endif
+
+
 
 <!-- Artikel Terkait -->
 <div class="container shadow bg-white pb-4 px-4 px-lg-5 my-4 my-md-5 rounded-3 text-center">

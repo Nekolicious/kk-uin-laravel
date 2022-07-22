@@ -31,21 +31,24 @@ Home
         <h3 class="fw-bold">AKTIVITAS</h3>
         <h5 class="fw-bold">Artikel Kegiatan Kelompok Keahlian</h5>
     </div>
+
     <div class="row align-items-start">
-        <div class="col-xs-12 col-md-6">
+        @foreach($artikel as $data)
+        <div class="col-xs-12 col-md-6 col-lg-4">
             <div class="card pt-4 px-4 mb-4">
-                <img src="{{ asset('img/post-dummy.png') }}" class="card-img-top" alt="..." />
+                <img id="artikelimg" src="{{ asset('/uploads/img/'.$data->header) }}" class="card-img-top" alt="..." />
                 <div class="card-body text-start">
                     <h5 class="card-title">
-                        Ini Merupakan Judul Dari Artikel di Atas Ini Merupakan Judul
-                        Dari Artikel di Atas
+                        {{ $data->title }}
                     </h5>
-                    <span class="fw-light">3 hari yang lalu</span>
-                    <a href="artikel.html" class="stretched-link"></a>
+                    <span class="fw-light"></span>
+                    <a href="{{ route('artikel', ['slug'=>$data->slug]) }}" class="stretched-link"></a>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
+
     <button type="button" class="btn btn-outline-dark fw-bold border-4 rounded-0 px-5">
         Selengkapnya
     </button>
@@ -79,7 +82,7 @@ Home
         <h3 class="fw-bold text-center">PENELITIAN</h3>
     </div>
     <div class="row">
-        <div class="col-xs-6 col-md-4 mb-4">
+        <div class="col-xs-6 col-md-4 mb-4" id="research">
             <div class="card bg-dark text-white rounded-0">
                 <img src="{{ asset('img/penelitian1.png') }}" class="card-img" alt="..." />
                 <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
