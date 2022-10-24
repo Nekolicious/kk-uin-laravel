@@ -28,18 +28,17 @@ Kategori
                 <tbody>
                     @foreach ($data as $kategori)
                     <tr>
-                        <input type="hidden" id="id-kategori" name="id" value="{{ $kategori->kategori_id }}">
                         <td>{{ $kategori->nama }}</td>
-                        <td>0</td>
+                        <td>{{ count($kategori->artikel) }}</td>
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <button class="btn btn-primary btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#editModal">
+                                    <button class="btn btn-primary btn-block" data-kategori-id="{{ $kategori->kategori_id }}" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#editModal">
                                         <i class="fa-solid fa-pencil"></i>Edit
                                     </button>
                                 </div>
                                 <div class="col">
-                                    <button class="btn btn-danger btn-block" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#deleteModal">
+                                    <button class="btn btn-danger btn-block" data-kategori-id="{{ $kategori->kategori_id }}" data-kategori="{{ $kategori->nama }}" data-toggle="modal" data-target="#deleteModal">
                                         <i class="fa-solid fa-trash-can"></i>Hapus
                                     </button>
                                 </div>
@@ -149,7 +148,7 @@ Kategori
 <script>
     $('#editModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var id = $('#id-kategori').val()
+        var id = button.data('kategori-id')
         var kategori = button.data('kategori')
         var modal = $(this)
 
@@ -162,7 +161,7 @@ Kategori
 <script>
     $('#deleteModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var id = $('#id-kategori').val()
+        var id = button.data('kategori-id')
         var kategori = button.data('kategori')
         var modal = $(this)
 
@@ -174,15 +173,7 @@ Kategori
 <script>
     $(document).ready(
         $(function() {
-            $('#kategoridata').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+            $('#kategoridata').DataTable({});
         })
     );
 </script>

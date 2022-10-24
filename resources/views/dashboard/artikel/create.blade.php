@@ -34,27 +34,29 @@ Artikel Baru
                 </div>
             </div>
         </div>
-        <div class="mb-3">
-            <label for="inputSlug" class="form-label">Permalink</label>
-            <input type="text" class="form-control" name="slug" id="inputSlug">
-        </div>
-        <div class="mb-3">
-            <div class="form-group">
-                <label for="inputKategori">Kategori</label>
-                <select id="inputKategori" name="kategori_id" class="form-control" required>
-                    <option selected disabled>Pilih...</option>
-                    @foreach ($kategori as $key)
-                    <option value="{{ $key->kategori_id }}">{{ $key->nama }}</option>
-                    @endforeach
-                </select>
+        <div class="col">
+            <div class="mb-3">
+                <label for="inputSlug" class="form-label">Permalink</label>
+                <input type="text" class="form-control" name="slug" id="inputSlug">
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="inputBody" class="form-label">Isi</label>
-            <textarea id="wysiwyg" name="body"></textarea>
-        </div>
-        <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary">Buat</button>
+            <div class="mb-3">
+                <div class="form-group">
+                    <label for="inputKategori">Kategori</label>
+                    <select id="inputKategori" name="kategori_id" class="form-control" required>
+                        <option selected disabled>Pilih...</option>
+                        @foreach ($kategori as $key)
+                        <option value="{{ $key->kategori_id }}">{{ $key->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="inputBody" class="form-label">Isi</label>
+                <textarea id="wysiwyg" name="body"></textarea>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Buat</button>
+            </div>
         </div>
     </form>
 </div><!-- /.container-fluid -->
@@ -69,7 +71,7 @@ Artikel Baru
         $('#wysiwyg').summernote({
             height: 250,
         });
-        
+
         bsCustomFileInput.init()
     });
 </script>

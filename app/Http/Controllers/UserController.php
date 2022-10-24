@@ -6,66 +6,78 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\KK;
 
 class UserController extends Controller
 {
-    public function show() {
+    public function show()
+    {
         $users = User::all();
 
         return view('dashboard.users', compact('users'));
     }
-    public function register(){
-        $data['title'] = "Register";
-        return view('user/register', $data);
+
+    public function register()
+    {
+        $data = KK::all();
+        return view('user.register', ['data' => $data]);
     }
 
-    public function register_action(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'nipnim'=>'required|unique:users',
-            'email'=>'required|unique:users',
-            'notelp'=>'required',
-            'kk'=>'required',
-            'password'=>'required',
-            'password_confirmation'=>'required|same:password',
-            'is_admin'=>'required',
-        ]);
+    public function register_action(Request $request)
+    {
+
+        $request->validate(
+            [
+                'name' => 'required',
+                'nipnim' => 'required|unique:users',
+                'email' => 'required|unique:users',
+                'notelp' => 'required',
+                'kk_id' => 'required',
+                'password' => 'required',
+                'password_confirmation' => 'required|same:password',
+                'status' => 'required',
+            ],
+            [
+                'status.required' => 'The status field is required.'
+            ]
+        );
         $user = new User([
             'name' => $request->name,
             'nipnim' => $request->nipnim,
             'email' => $request->email,
-            'notelp'=>$request->notelp,
-            'kk'=>$request->kk,
+            'notelp' => $request->notelp,
+            'kk_id' => $request->kk_id,
             'password' => Hash::make($request->password),
-            'is_admin'=>$request->is_admin,
+            'status' => $request->is_admin,
         ]);
         $user->save();
-        return redirect()->route('register_success')->with('success', 'Registrasi Berhasil. Silahkan masuk');
+        return redirect()->route('home')->with('success', 'Registrasi Berhasil. Silahkan tunggu konfirmasi dari admin.');
     }
 
-    public function login(){
+    public function login()
+    {
         $data['title'] = 'Login';
-        return view('user/master', $data);
+        return view('user.master', $data);
     }
-    public function login_action(Request $request){
+
+    public function login_action(Request $request)
+    {
         $request->validate([
-            'nipnim'=>'required',
-            'password'=>'required',
+            'nipnim' => 'required',
+            'password' => 'required',
         ]);
-        if(Auth::attempt(['nipnim'=>$request->nipnim, 'password'=>$request->password])) {
-            if(Auth::user()->is_admin == 1){
-                $request->session()->regenerate();
-                return redirect()->intended('dashboard');
+        if (Auth::attempt(['nipnim' => $request->nipnim, 'password' => $request->password])) {
+            if (Auth::user()->is_approve != 1) {
+                Auth::logout();
+                return back()->withErrors(['unapproved' => 'Akun kamu belum diverifikasi admin.']);
             }
-            else{
-                return redirect()->route('home');
-            }
+            return redirect()->route('home');
         }
-        return back()->withErrors(['password'=>'Password atau NIM salah!']);
+        return back()->withErrors(['password' => 'NIP/NIM atau Password salah!']);
     }
-    
-    public function logout(Request $request){
+
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerate();

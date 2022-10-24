@@ -28,18 +28,32 @@ Users
                 <tbody>
                     @foreach ($users as $key => $value)
                     <tr>
+                        <input type="hidden" value="{{ $value->user_id }}" name="user_id">
                         <td>{{ $value->created_at }}</td>
                         <td>{{ $value->nipnim }}</td>
                         <td class="text-capitalize">{{ $value->name }}</td>
-                        <td class="text-uppercase">{{ $value->kk }}</td>
+                        <td class="text-uppercase">{{ $value->kk->code }}</td>
                         <td>{{ $value->email }}</td>
                         <td>
                             <div class="row">
-                                <div class="col">
+                                <div class="col mb-1">
                                     <button class="btn btn-primary btn-block"><i class="fa-solid fa-pencil"></i><span class="px-1">Edit</span></button>
                                 </div>
-                                <div class="col">
+                                <div class="col mb-1">
                                     <button class="btn btn-danger btn-block"><i class="fa-solid fa-trash-can"></i><span class="px-1">Hapus</span></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-1">
+                                    @if($value->is_admin == 1)
+                                    <button class="btn btn-success btn-block" disabled><i class="fas fa-check"></i><span class="px-1">Admin</span></button>
+                                    @else
+                                    <form action="{{ route('dashboard.usermgmt.admins.grant') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="{{ $value->user_id }}" name="user_id">
+                                        <button class="btn btn-warning btn-block" type="submit"><i class="fas fa-exclamation-triangle"></i><span class="px-1">Jadikan Admin</span></button>
+                                    </form>
+                                    @endif
                                 </div>
                             </div>
                         </td>
@@ -66,15 +80,7 @@ Users
 <script>
     $(document).ready(
         $(function() {
-            $('#userdata').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+            $('#userdata').DataTable({});
         })
     );
 </script>

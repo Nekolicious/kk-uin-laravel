@@ -43,15 +43,22 @@ Artikel
                         <td>{{ $artikel->author->name }}</td>
                         <td>
                             <div class="row">
-                                <div class="col">
+                                <div class="col mb-1">
                                     <a class="btn btn-primary btn-block" href="{{ route('dashboard.artikel.edit', ['artikel_id'=>$artikel->artikel_id]) }}">
-                                        <i class="fa-solid fa-pencil"></i>Edit
+                                        <i class="fa-solid fa-pencil"></i><span class="px-1">Edit</span>
                                     </a>
                                 </div>
-                                <div class="col">
+                                <div class="col mb-1">
                                     <button class="btn btn-danger btn-block" data-artikel="{{ $artikel->title }}" data-toggle="modal" data-target="#deleteModal">
-                                        <i class="fa-solid fa-trash-can"></i>Hapus
+                                        <i class="fa-solid fa-trash-can"></i><span class="px-1">Hapus</span>
                                     </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-1">
+                                    <a class="btn btn-success btn-block" target="_blank" href="{{ route('artikel', ['slug'=>$artikel->slug]) }}">
+                                        <i class="fa-solid fa-external-link-square-alt"></i><span class="px-1">Baca</span>
+                                    </a>
                                 </div>
                             </div>
                         </td>
@@ -120,15 +127,7 @@ Artikel
 <script>
     $(document).ready(
         $(function() {
-            $('#artikeldata').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+            $('#artikeldata').DataTable({});
         })
     );
 </script>

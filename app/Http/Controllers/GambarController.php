@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\File;
 
 class GambarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('is_admin');
+    }
+
     public function show()
     {
         // $img = Artikel::all(columns: ['header']);

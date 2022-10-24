@@ -11,7 +11,12 @@ class User extends Authenticable
     protected $table = 'users';
     protected $primaryKey = 'user_id';
 
-    protected $fillable = ['email', 'name', 'nipnim', 'notelp', 'kk', 'nipnim', 'password', 'is_admin', 'is_approve'];
+    protected $fillable = ['email', 'name', 'nipnim', 'notelp', 'kk_id', 'nipnim', 'password', 'is_admin', 'is_approve'];
+    
+    public function kk()
+    {
+        return $this->hasOne(KK::class, 'kk_id', 'kk_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -21,7 +26,7 @@ class User extends Authenticable
     protected $hidden = [
         'password', 'remember_token',
     ];
-  
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -30,5 +35,4 @@ class User extends Authenticable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 }

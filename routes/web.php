@@ -9,6 +9,9 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GambarController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KKController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,15 +30,27 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('kelompok-keahlian', [PageController::class, 'kk'])->name('kk');
 Route::get('artikel/{slug}', [PageController::class, 'artikel'])->name('artikel');
 
-// Admin Dashboard, middleware construct in its controller
+// Admin Dashboard
+// Middleware construct in its controller
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     // User management
     Route::prefix('usermgmt')->name('usermgmt.')->group(function () {
+        // Pending User
         Route::get('/pending', [DashboardController::class, 'pendinguser'])->name('pending');
+        Route::prefix('pending')->name('pending.')->group(function () {
+            Route::post('/approve', [DashboardController::class, 'approve'])->name('approve');
+            Route::post('/decline', [DashboardController::class, 'decline'])->name('decline');
+        });
+        // All User
         Route::get('/users', [DashboardController::class, 'users'])->name('users');
+        // Admin User
         Route::get('/admins', [DashboardController::class, 'admins'])->name('admins');
+        Route::prefix('admins')->name('admins.')->group(function() {
+            Route::post('/revoke', [DashboardController::class, 'revoke'])->name('revoke');
+            Route::post('/grant', [DashboardController::class, 'grant'])->name('grant');
+        });
     });
 
     // Artikel or aktivitas
@@ -61,6 +76,21 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::post('/update', [KategoriController::class, 'update'])->name('update');
         Route::get('/delete', [KategoriController::class, 'delete'])->name('delete');
     });
+
+    // Dosen
+    Route::get('/dosen', [DosenController::class, 'show'])->name('dosen');
+    Route::prefix('dosen')->name('dosen.')->group(function() {
+        Route::get('/create', [DosenController::class, 'create'])->name('create');
+        Route::post('/store', [DosenController::class, 'store'])->name('store');
+    });
+
+    // KK
+    Route::get('/kk', [KKController::class, 'show'])->name('kk');
+    Route::prefix('kk')->name('kk.')->group(function() {
+        Route::get('/create', [KKController::class, 'create'])->name('create');
+        Route::get('/edit', [KKController::class, 'edit'])->name('edit');
+        Route::get('/delete', [KKController::class, 'delete'])->name('delete');
+    });
 });
 
 // Register & login
@@ -73,10 +103,6 @@ Route::get('approve', [UserController::class, 'approve'])->name('approve');
 Route::get('register_success', function () {
     return view('user/register_success');
 })->name('register_success');
-
-// Route::get('header_akun', function () {
-//     return view('header_akun');
-// })->name('header_akun');
 
 // Forum Diskusi
 Route::resource('posts', PostController::class);

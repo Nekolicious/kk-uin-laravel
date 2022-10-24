@@ -21,7 +21,7 @@ Member Approvements
             <th>Tanggal</th>
             <th>NIM</th>
             <th>Nama</th>
-            <th>Angkatan</th>
+            <th>Email</th>
             <th>Kelompok Keahlian</th>
             <th>Status</th>
             <th>Action</th>
@@ -29,24 +29,39 @@ Member Approvements
         </thead>
         <tbody>
           @foreach ($users as $value)
-          @if ($value->is_admin == 0)
           <tr>
             <td>{{ $value->created_at }}</td>
             <td>{{ $value->nipnim }}</td>
             <td>{{ $value->name }}</td>
             <td>{{ $value->email }}</td>
-            <td>{{ $value->kk }}</td>
+            <td class="text-uppercase">{{ $value->kk->code }}</td>
             <td>
-              <button type="button" class="btn btn-danger">
+              <button type="button" disabled class="btn btn-danger">
                 Belum Disetujui
               </button>
             </td>
             <td>
-
-              <a class="btn btn-success action" role="button" aria-disabled="false"><i class="fa-solid fa-check"></i><span class="px-1">Approve</span></a>
+              <div class="row">
+                <div class="col mb-1">
+                  <form action="{{ route('dashboard.usermgmt.pending.approve') }}" method="POST">
+                    @csrf
+                    <input type="hidden" value="{{ $value->user_id }}" name="user_id">
+                    <button class="btn btn-success btn-block action" role="button" aria-disabled="false">
+                      <i class="fa-solid fa-check"></i><span class="px-1">Approve</span>
+                    </button>
+                  </form>
+                </div>
+                <div class="col mb-1">
+                  <form action="{{ route('dashboard.usermgmt.pending.decline') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-danger btn-block action" role="button" aria-disabled="false">
+                      <i class="fa-solid fa-xmark"></i><span class="px-1">Decline</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
             </td>
           </tr>
-          @endif
           @endforeach
         </tbody>
         <tfoot>
@@ -54,7 +69,7 @@ Member Approvements
             <th>Tanggal</th>
             <th>NIM</th>
             <th>Nama</th>
-            <th>Angkatan</th>
+            <th>Email</th>
             <th>Kelompok Keahlian</th>
             <th>Status</th>
             <th>Action</th>
@@ -70,18 +85,11 @@ Member Approvements
 
 @section('script')
 <script>
-    $(document).ready(
-        $(function() {
-            $('#pendingdata').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        })
-    );
+  $(document).ready(
+    $(function() {
+      $('#pendingdata').DataTable({
+      });
+    })
+  );
 </script>
 @endsection

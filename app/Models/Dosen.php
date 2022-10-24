@@ -11,5 +11,10 @@ class Dosen extends Model
 
     protected $table = 'dosen';
     protected $primarykey = 'dosen_id';
-    protected $guard = [];
+    protected $fillable = ['user_id'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id', 'user_id');
+    }
 }

@@ -1,7 +1,9 @@
 @extends('master')
 
 @section('title')
-
+@foreach($data as $artikel)
+{{ $artikel->title }}
+@endforeach
 @endsection
 
 @section('content')

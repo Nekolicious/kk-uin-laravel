@@ -44,6 +44,28 @@ class ArtikelController extends Controller
             ]);
         }
 
+        // // 
+        // $content = $request->content;
+        // $dom = new \DOMDocument();
+        // $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        // $imageFile = $dom->getElementsByTagName('imageFile');
+
+        // foreach ($imageFile as $item => $image) {
+        //     $data = $img->getAttribute('src');
+        //     list($type, $data) = explode(';', $data);
+        //     list(, $data) = explode(',', $data);
+        //     $imageData = base64_decode($data);
+        //     $image_name = "/uploads/img/".time().$item.'.png';
+        //     $path = public_path('uplodads').'/img/'.$image_name;
+        //     file_put_contents($path, $imageData);
+
+        //     $image->removeAttribute('src');
+        //     $image->setAttribute('src',$image_name);
+        // }
+
+        // $content = $dom->saveHTML();
+        // // 
+
         $artikel = new Artikel([
             'title' => $request->title,
             'body' => $request->body,

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name') }} | @yield('title')</title>
+    <title>KK Admin | @yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -113,7 +113,6 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ route('dashboard') }}" class="brand-link">
-            <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Admin Dashboard</span>
         </a>
 
@@ -140,6 +139,7 @@
                             <p>Overview</p>
                         </a>
                     </li>
+                    <li class="nav-header">Admin Tools</li>
                     <li class="nav-item {{ Request::is('dashboard/usermgmt/*') ? 'menu-open':'' }}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users-gear"></i>
@@ -149,7 +149,7 @@
                                 <span class="badge badge-info right">6</span>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview bg-secondary rounded">
+                        <ul class="nav nav-treeview rounded">
                             <li class="nav-item">
                                 <a href="{{ route('dashboard.usermgmt.pending') }}" class="nav-link {{ Request::is('dashboard/usermgmt/pending') ? 'active':'' }}">
                                     <i class="fas fa-user-clock nav-icon"></i>
@@ -180,6 +180,18 @@
                         <a href="{{ route('dashboard.kategori') }}" class="nav-link {{ Request::is('dashboard/kategori') ? 'active':'' }}">
                             <i class="nav-icon fa-solid fa-layer-group"></i>
                             <p>Kategori</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.dosen') }}" class="nav-link {{ Request::is('dashboard/dosen') ? 'active':'' }}">
+                            <i class="nav-icon fa-solid fa-chalkboard-teacher"></i>
+                            <p>Dosen</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.kk') }}" class="nav-link {{ Request::is('dashboard/kk') ? 'active':'' }}">
+                            <i class="nav-icon fa-solid fa-flask"></i>
+                            <p>Kelompok Keahlian</p>
                         </a>
                     </li>
                     <li class="nav-item">

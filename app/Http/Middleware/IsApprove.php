@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdmin
+class IsApprove
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,11 @@ class IsAdmin
     public function handle(Request $request, Closure $next)
     {
         try {
-            if (auth()->user()->is_admin == 1) {
+            if (auth()->user()->is_approve == 1) {
                 return $next($request);
             }
         } catch (\Throwable $th) {
-            return redirect()->route('home')->withErrors(['error' => 'Maaf anda tidak memiliki akses.']);
+            return redirect()->route('home')->withErrors(['error' => 'Maaf, akun kamu belum disetujui admin.']);
         }
-        return redirect()->route('home')->withErrors(['error' => 'Maaf anda tidak memiliki akses.']);
     }
 }

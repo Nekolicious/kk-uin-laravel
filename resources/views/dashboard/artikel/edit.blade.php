@@ -61,7 +61,7 @@ Edit Artikel
             <textarea id="wysiwyg" name="body">{{ $artikel->body }}</textarea>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="{{ route('dashboard.artikel') }}" type="submit" class="btn btn-secondary">batal</a>
+            <a href="{{ route('dashboard.artikel') }}" type="submit" class="btn btn-secondary">Batal</a>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
     </form>

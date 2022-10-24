@@ -21,32 +21,29 @@ Admins
                         <th>Tanggal</th>
                         <th>NIP/NIM</th>
                         <th>Nama</th>
-                        <th>Angkatan</th>
+                        <th>Email</th>
                         <th>Kelompok Keahlian</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $value)
-                    @if ($value->is_admin == 1)
                     <tr>
                         <td>{{ $value->created_at }}</td>
                         <td>{{ $value->nipnim }}</td>
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->kk }}</td>
+                        <td class="text-uppercase">{{ $value->kk->code }}</td>
                         <td>
-                            <button type="button" class="btn btn-danger">
-                                Belum Disetujui
-                            </button>
-                        </td>
-                        <td>
-                            <a class="btn btn-secondary action" role="button" aria-disabled="false">Approve</a>
-                            <!-- Button trigger modal -->
+                            <div class="row">
+                                <div class="col mb-1">
+                                    <button class="btn btn-danger btn-block" data-user-id="{{ $value->user_id }}" data-user="{{ $value->name }}" data-toggle="modal" data-target="#revokeModal">
+                                        <i class="fa-solid fa-xmark"></i><span class="px-1">Revoke</span>
+                                    </button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -54,9 +51,8 @@ Admins
                         <th>Tanggal</th>
                         <th>NIP/NIM</th>
                         <th>Nama</th>
-                        <th>Angkatan</th>
+                        <th>Email</th>
                         <th>Kelompok Keahlian</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -66,21 +62,52 @@ Admins
 </div><!-- /.container-fluid -->
 
 <div class="slider-background" id="sliders-background"></div>
+
+<!-- Modal revoke -->
+<div class="modal fade" id="revokeModal" tabindex="-1" aria-labelledby="revokeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <div class="modal-header">
+                <h5 class="modal-title" id="revokeModalLabel">Revoke Izin Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('dashboard.usermgmt.admins.revoke') }}">
+                    @csrf
+                    <div class="form-group">
+                        <input id="id-user" type="hidden" name="user_id" value="">
+                        <p class="text-center">Yakin ingin mencabut izin user ini?</p>
+                    </div>
+                    <div class="modal-footer pb-0">
+                        <button type="submit" class="btn btn-warning">Ya</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
 <script>
+    $('#revokeModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('user-id')
+        var user = button.data('user')
+        var modal = $(this)
+
+        modal.find('.modal-title').text('Revoke Izin Admin \"' + user + '\"?')
+        modal.find('.modal-body #id-user').val(id)
+    })
+</script>
+
+<script>
     $(document).ready(
         $(function() {
-            $('#admindata').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+            $('#admindata').DataTable({});
         })
     );
 </script>

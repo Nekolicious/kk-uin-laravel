@@ -66,13 +66,20 @@
         </div>
     </div>
 </nav>
+
 {{-- Login modal --}}
 @if(session('success'))
-<p class="alert alert-success">{{ session('success') }}</p>
+<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+    <p class="m-0">{{ session('success') }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 @endif
 @if($errors->any())
 @foreach($errors->all() as $err)
-<p class="alert alert-danger">{{ $err }}</p>
+<div class="alert alert-danger alert-dismissible fade show m-1" role="alert">
+    <p class="m-0">{{ $err }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 @endforeach
 @endif
 <!-- Login Modal -->
@@ -89,12 +96,12 @@
                     <!-- NIM/NIP input -->
                     <div class="form-outline mb-4 text-start">
                         <label class="form-label lead" for="form3Example3">NIM/NIP</label>
-                        <input type="number" id="form3Example3" class="form-control form-control-lg" placeholder="Masukkan NIM atau NIP anda" name="nipnim" value="{{ old('nipnim') }}" />
+                        <input type="number" id="form3Example3" class="form-control form-control-lg" placeholder="Masukkan NIM atau NIP anda" name="nipnim" value="{{ old('nipnim') }}" required />
                     </div>
                     <!-- Password input -->
                     <div class="form-outline mb-3 text-start">
                         <label class="form-label lead" for="form3Example4">Password</label>
-                        <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Masukkan password" name="password" />
+                        <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Masukkan password" name="password" required />
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">
@@ -110,7 +117,7 @@
 
                     <div class="btn-box text-center text-lg-start mt-4 pt-2">
                         <div class="d-grid">
-                            <button class="btn btn-secondary rounded-0 fw-bold">sign in</button>
+                            <button class="btn btn-secondary rounded-0 fw-bold">Login</button>
                         </div>
                     </div>
 
@@ -125,5 +132,5 @@
 </div>
 <!-- Login Modal End-->
 @php
-    $usesearch = true
+$usesearch = true
 @endphp
