@@ -23,7 +23,7 @@ class UserController extends Controller
         return view('user.register', ['data' => $data]);
     }
 
-    public function register_action(Request $request)
+    public function store(Request $request)
     {
 
         $request->validate(

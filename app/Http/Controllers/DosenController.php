@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
-use App\Models\KK;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
@@ -16,41 +16,32 @@ class DosenController extends Controller
     public function show()
     {
         $data = Dosen::all();
-        return view('dashboard.dosen.dosen', ['data' => $data]);
+        return view('dashboard.user.dosen', ['data' => $data]);
     }
 
-    public function create()
+    public function grant(Request $request)
     {
-        $data = KK::all();
-        return view('dashboard.dosen.create', ['data' => $data]);
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'kk_id' => 'required',
-            'email' => 'required',
-            'nip' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
-        ]);
-
-        $dosen = new Dosen([
-            'nama' => $request->nama,
-            'kk_id' => $request->kk_id,
-            'email' => $request->email,
-            'nip' => $request->nip,
-        ]);
-
-        if ($request->hasFile('image')) {
-            $path = 'public/img';
-            $file = $request->file('image');
-            $filename = date('YmdHi');
-            $file->storeAs($path, $filename);
-            $dosen['foto'] = $filename;
+        try {
+            $dosen = new Dosen([
+                'user_id' => $request->user_id,
+            ]);
+            $dosen->save();
+            return redirect()->route('dashboard.usermgmt.users')->with('success', 'Berhasil memberi akses dosen pada user tersebut.');
+        } catch (\Throwable $th) {
+            error_log($th);
+            return redirect()->route('dashboard.usermgmt.users')->withErrors(['error' => 'Terjadi error saat akan memberi izin dosen user tersebut.']);
         }
+    }
 
-        $dosen->save();
-        return redirect()->route('dashboard.dosen.dosen');
+    public function revoke(Request $request)
+    {
+        $userdata = Dosen::where('user_id', $request->user_id);
+        try {
+            $userdata->delete();
+            return redirect()->route('dashboard.usermgmt.dosen')->with('success', 'User tersebut sudah bukan dosen.');
+        } catch (\Throwable $th) {
+            error_log($th);
+            return redirect()->route('dashboard.usermgmt.dosen')->withErrors(['error' => 'Terjadi error saat akan menghapus izin dosen user tersebut.']);
+        }
     }
 }

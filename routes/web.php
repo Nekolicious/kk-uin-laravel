@@ -43,13 +43,22 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             Route::post('/approve', [DashboardController::class, 'approve'])->name('approve');
             Route::post('/decline', [DashboardController::class, 'decline'])->name('decline');
         });
+
         // All User
         Route::get('/users', [DashboardController::class, 'users'])->name('users');
+
         // Admin User
         Route::get('/admins', [DashboardController::class, 'admins'])->name('admins');
-        Route::prefix('admins')->name('admins.')->group(function() {
+        Route::prefix('admins')->name('admins.')->group(function () {
             Route::post('/revoke', [DashboardController::class, 'revoke'])->name('revoke');
             Route::post('/grant', [DashboardController::class, 'grant'])->name('grant');
+        });
+
+        // Dosen
+        Route::get('/dosen', [DosenController::class, 'show'])->name('dosen');
+        Route::prefix('dosen')->name('dosen.')->group(function () {
+            Route::post('/revoke', [DosenController::class, 'revoke'])->name('revoke');
+            Route::post('/grant', [DosenController::class, 'grant'])->name('grant');
         });
     });
 
@@ -77,16 +86,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/delete', [KategoriController::class, 'delete'])->name('delete');
     });
 
-    // Dosen
-    Route::get('/dosen', [DosenController::class, 'show'])->name('dosen');
-    Route::prefix('dosen')->name('dosen.')->group(function() {
-        Route::get('/create', [DosenController::class, 'create'])->name('create');
-        Route::post('/store', [DosenController::class, 'store'])->name('store');
-    });
-
     // KK
     Route::get('/kk', [KKController::class, 'show'])->name('kk');
-    Route::prefix('kk')->name('kk.')->group(function() {
+    Route::prefix('kk')->name('kk.')->group(function () {
         Route::get('/create', [KKController::class, 'create'])->name('create');
         Route::get('/edit', [KKController::class, 'edit'])->name('edit');
         Route::get('/delete', [KKController::class, 'delete'])->name('delete');
@@ -95,7 +97,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
 // Register & login
 Route::get('register', [UserController::class, 'register'])->name('register');
-Route::post('register', [UserController::class, 'register_action'])->name('register.action');
+Route::post('register', [UserController::class, 'store'])->name('register.action');
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login.action');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');

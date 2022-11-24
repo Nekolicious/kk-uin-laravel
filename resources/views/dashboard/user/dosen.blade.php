@@ -1,43 +1,42 @@
 @extends('dashboard.dashboard')
 
 @section('title')
-Admins
+Dosen
 @endsection
 
 @section('breadcrumb')
 @parent
-<li class="breadcrumb-item active">Admin</li>
+<li class="breadcrumb-item active">Dosen</li>
 @endsection
 
 @section('content')
-
 <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <section id="table">
         <div class="table-responsive px-2 py-4 bg-white mb-5">
-            <table id="admindata" style="width: 100%" class="table table-bordered table-striped py-3">
+            <table id="dosendata" style="width: 100%" class="table table-bordered table-striped py-3">
                 <thead>
                     <tr>
-                        <th>Tanggal</th>
-                        <th>NIP/NIM</th>
+                        <th>Foto</th>
                         <th>Nama</th>
+                        <th>NIP</th>
+                        <th>KK</th>
                         <th>Email</th>
-                        <th>Kelompok Keahlian</th>
-                        <th>Action</th>
+                        <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $value)
+                    @foreach ($data as $dosen)
                     <tr>
-                        <td>{{ $value->created_at }}</td>
-                        <td>{{ $value->nipnim }}</td>
-                        <td>{{ $value->name }}</td>
-                        <td>{{ $value->email }}</td>
-                        <td class="text-uppercase">{{ $value->kk->code }}</td>
+                        <td><img src="{{ asset('uploads/img/'.'$dosen->foto') }}" alt="{{ $dosen->nama }}"></td>
+                        <td>{{ $dosen->user->name }}</td>
+                        <td>{{ $dosen->user->nipnim  }}</td>
+                        <td>{{ $dosen->user->kk->name }}</td>
+                        <td>{{ $dosen->user->email }}</td>
                         <td>
                             <div class="row">
                                 <div class="col mb-1">
-                                    <button class="btn btn-danger btn-block" data-user-id="{{ $value->user_id }}" data-user="{{ $value->name }}" data-toggle="modal" data-target="#revokeModal">
+                                    <button class="btn btn-danger btn-block" data-user-id="{{ $dosen->user_id }}" data-user="{{ $dosen->user->name }}" data-toggle="modal" data-target="#revokeModal">
                                         <i class="fa-solid fa-xmark"></i><span class="px-1">Revoke</span>
                                     </button>
                                 </div>
@@ -48,12 +47,12 @@ Admins
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Tanggal</th>
-                        <th>NIP/NIM</th>
+                        <th>Foto</th>
                         <th>Nama</th>
+                        <th>NIP</th>
+                        <th>Jabatan</th>
                         <th>Email</th>
-                        <th>Kelompok Keahlian</th>
-                        <th>Action</th>
+                        <th>Opsi</th>
                     </tr>
                 </tfoot>
             </table>
@@ -61,20 +60,18 @@ Admins
     </section>
 </div><!-- /.container-fluid -->
 
-<div class="slider-background" id="sliders-background"></div>
-
 <!-- Modal revoke -->
 <div class="modal fade" id="revokeModal" tabindex="-1" aria-labelledby="revokeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content bg-danger">
             <div class="modal-header">
-                <h5 class="modal-title" id="revokeModalLabel">Revoke Izin Admin</h5>
+                <h5 class="modal-title" id="revokeModalLabel">Revoke Izin Dosen</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('dashboard.usermgmt.admins.revoke') }}">
+                <form method="POST" action="{{ route('dashboard.usermgmt.dosen.revoke') }}">
                     @csrf
                     <div class="form-group">
                         <input id="id-user" type="hidden" name="user_id" value="">
@@ -100,7 +97,7 @@ Admins
         var user = button.data('user')
         var modal = $(this)
 
-        modal.find('.modal-title').text('Revoke Izin Admin \"' + user + '\"?')
+        modal.find('.modal-title').text('Revoke Izin Dosen \"' + user + '\"?')
         modal.find('.modal-body #id-user').val(id)
     })
 </script>
@@ -108,7 +105,7 @@ Admins
 <script>
     $(document).ready(
         $(function() {
-            $('#admindata').DataTable({});
+            $('#dosendata').DataTable({});
         })
     );
 </script>

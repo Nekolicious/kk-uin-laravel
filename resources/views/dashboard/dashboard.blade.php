@@ -163,6 +163,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('dashboard.usermgmt.dosen') }}" class="nav-link {{ Request::is('dashboard/usermgmt/dosen') ? 'active':'' }}">
+                                    <i class="nav-icon fa-solid fa-chalkboard-teacher"></i>
+                                    <p>Dosen</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('dashboard.usermgmt.admins') }}" class="nav-link {{ Request::is('dashboard/usermgmt/admins') ? 'active':'' }}">
                                     <i class="fas fa-user-shield nav-icon"></i>
                                     <p>Admin</p>
@@ -180,12 +186,6 @@
                         <a href="{{ route('dashboard.kategori') }}" class="nav-link {{ Request::is('dashboard/kategori') ? 'active':'' }}">
                             <i class="nav-icon fa-solid fa-layer-group"></i>
                             <p>Kategori</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard.dosen') }}" class="nav-link {{ Request::is('dashboard/dosen') ? 'active':'' }}">
-                            <i class="nav-icon fa-solid fa-chalkboard-teacher"></i>
-                            <p>Dosen</p>
                         </a>
                     </li>
                     <li class="nav-item">

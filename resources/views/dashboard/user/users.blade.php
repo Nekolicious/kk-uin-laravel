@@ -55,6 +55,17 @@ Users
                                     </form>
                                     @endif
                                 </div>
+                                <div class="col mb-1">
+                                    @if(isset($value->dosen->user_id))
+                                    <button class="btn btn-success btn-block" disabled><i class="fas fa-check"></i><span class="px-1">Dosen</span></button>
+                                    @else
+                                    <form action="{{ route('dashboard.usermgmt.dosen.grant') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="{{ $value->user_id }}" name="user_id">
+                                        <button class="btn btn-warning btn-block" type="submit"><i class="fas fa-exclamation-triangle"></i><span class="px-1">Jadikan Dosen</span></button>
+                                    </form>
+                                    @endif
+                                </div>
                             </div>
                         </td>
                     </tr>
