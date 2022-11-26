@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
+use App\Models\KK;
 use Illuminate\Support\Facades\File;
 
 class PageController extends Controller
 {
     public function index() {
         $artikel = Artikel::paginate(12);
-        return view('landing.landing', ['artikel'=>$artikel]);
+        $kk = KK::paginate(4);
+        return view('landing.landing', ['artikel'=>$artikel, 'kk'=>$kk]);
     }
 
     public function roadmap() {

@@ -77,6 +77,7 @@ Kategori
                         <input type="text" class="form-control" id="nama-kategori" name="nama" required="required">
                     </div>
                     <div class="modal-footer pb-0">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Batal</button>
                         <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </form>
@@ -105,6 +106,7 @@ Kategori
                         <input type="text" class="form-control" id="nama-kategori" name="nama" required="required">
                     </div>
                     <div class="modal-footer pb-0">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Batal</button>
                         <button type="submit" class="btn btn-success">Ubah</button>
                     </div>
                 </form>

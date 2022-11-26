@@ -77,7 +77,7 @@ class ArtikelController extends Controller
         if ($request->hasFile('image')) {
             $path = 'public/img';
             $file = $request->file('image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi');
             $file->storeAs($path, $filename);
             $artikel['header'] = $filename;
         }

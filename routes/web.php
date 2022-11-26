@@ -89,8 +89,8 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     // KK
     Route::get('/kk', [KKController::class, 'show'])->name('kk');
     Route::prefix('kk')->name('kk.')->group(function () {
-        Route::get('/create', [KKController::class, 'create'])->name('create');
-        Route::get('/edit', [KKController::class, 'edit'])->name('edit');
+        Route::post('/store', [KKController::class, 'store'])->name('store');
+        Route::post('/update', [KKController::class, 'update'])->name('update');
         Route::get('/delete', [KKController::class, 'delete'])->name('delete');
     });
 });

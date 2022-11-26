@@ -19,18 +19,22 @@ class KKSeeder extends Seeder
             [
                 'code' => 'prpl',
                 'name' => 'Pemrograman Rekayasa Perangkat Lunak',
+                'logo' => 'prpl.png',
             ],
             [
                 'code' => 'vksb',
                 'name' => 'Visi Komputer dan Sistem Berintelegensia',
+                'logo' => 'vskb.png',
             ],
             [
                 'code' => 'mdsi',
                 'name' => 'Manajemen Data dan Sistem Informasi',
+                'logo' => 'mdsi.png',
             ],
             [
                 'code' => 'skkt',
                 'name' => 'Sistem Komputer dan Komputasi Terdistribusi',
+                'logo' => 'skkt.png',
             ],
         ];
 

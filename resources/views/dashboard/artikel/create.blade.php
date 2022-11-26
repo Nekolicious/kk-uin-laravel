@@ -64,6 +64,11 @@ Artikel Baru
 
 @section('script')
 <script src="{{ asset('js/bs-custom-file-input-min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        bsCustomFileInput.init()
+    })
+</script>
 <script src="{{ asset('js/jquery.slugify.js') }}"></script>
 
 <script>

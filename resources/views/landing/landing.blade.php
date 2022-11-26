@@ -60,18 +60,12 @@ Home
     <div class="col-md-8 text-center mx-auto">
         <h1 class="display-5 fw-bold mb-3">KELOMPOK KEAHLIAN</h1>
         <div class="row mx-2">
+            @foreach($kk as $data)
             <div class="col">
-                <a href="#"><img class="img-fluid" src="{{ asset('img/prpl.png') }}" /></a>
+                <input type="hidden" name="{{ $data->kk_id }}">
+                <a href="#"><img class="img-fluid" src="{{ asset('img/'.$data->logo) }}" alt="{{ $data->code }}" /></a>
             </div>
-            <div class="col">
-                <a href="#"><img class="img-fluid" src="{{ asset('img/prpl.png') }}" /></a>
-            </div>
-            <div class="col">
-                <a href="#"><img class="img-fluid" src="{{ asset('img/prpl.png') }}" /></a>
-            </div>
-            <div class="col">
-                <a href="#"><img class="img-fluid" src="{{ asset('img/prpl.png') }}" /></a>
-            </div>
+            @endforeach
         </div>
     </div>
 </header>
@@ -125,21 +119,6 @@ Home
                     </p>
                     <a href="#" class="stretched-link"></a>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="research-4th" class="col-xs-12 col-md-12 mb-3">
-        <div class="card bg-dark text-white rounded-0">
-            <img src="{{ asset('img/penelitian4.png') }}" class="card-img-top" alt="..." />
-            <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                <h5 class="card-title">
-                    Ini Adalah Judul Penelitian Ini adalah Judul Penelitian
-                </h5>
-                <p class="card-text fw-light">
-                    Ini merupakan deskripsi singkat mengenai penelitian dari
-                    mahasiswa...
-                </p>
-                <a href="#" class="stretched-link"></a>
             </div>
         </div>
     </div>

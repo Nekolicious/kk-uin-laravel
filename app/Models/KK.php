@@ -11,7 +11,7 @@ class KK extends Model
 
     protected $table = 'kk';
     protected $primarykey = 'kk_id';
-    protected $fillable = ['code','name'];
+    protected $fillable = ['code','name','logo'];
 
     public function users()
     {

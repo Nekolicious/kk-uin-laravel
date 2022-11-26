@@ -176,6 +176,7 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-header">Artikel Tools</li>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.artikel') }}" class="nav-link {{ Request::is('dashboard/artikel*') ? 'active':'' }}">
                             <i class="nav-icon fas fa-newspaper"></i>
@@ -188,12 +189,14 @@
                             <p>Kategori</p>
                         </a>
                     </li>
+                    <li class="nav-header">KK</li>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.kk') }}" class="nav-link {{ Request::is('dashboard/kk') ? 'active':'' }}">
                             <i class="nav-icon fa-solid fa-flask"></i>
                             <p>Kelompok Keahlian</p>
                         </a>
                     </li>
+                    <li class="nav-header">Storage</liv>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.gambar') }}" class="nav-link {{ Request::is('dashboard/gambar') ? 'active':'' }}">
                             <i class="nav-icon fa-solid fa-images"></i>
@@ -254,7 +257,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2022 <a href="#">Kelompok Keahlian UINSGD</a>.</strong>
+        <strong>Copyright &copy; 2022 <a href="#">Kelompok Keahlian Teknik Informatika UINSGD</a>.</strong>
         All rights reserved.
     </footer>
 
